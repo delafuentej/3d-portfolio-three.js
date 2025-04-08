@@ -32,16 +32,19 @@ export default function Experience(){
        config={{ mass: 2, tension: 400 }}
         // snap={{ mass: 4, tension: 400 }}
         >
-        <Hologram  position={[-3.75, 0.75, 1]}
-             scale={[0.35, 0.35, 0.35]} rotation={[0,1.25,0]}/>
+        <Hologram  
+            position={[-3.75, 0.75, 1]}
+             scale={[0.35, 0.35, 0.35]} 
+             rotation={[0,1.25,0]}
+        />
 
         <Float rotationIntensity={0.4}>
             {/* screen light  model*/}
             <rectAreaLight 
                 width={2.5}
                 height={1.65}
-                intensity={65}
-                color={'#ffffff'}
+                intensity={35}
+                color={'#00897B'}
                 rotation={[0.1, Math.PI, 0]}
                 position={[0, 0.55, -1.03]}
                 occlude
