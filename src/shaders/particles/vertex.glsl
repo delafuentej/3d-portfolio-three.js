@@ -1,4 +1,4 @@
-
+uniform vec3 uColor;
 uniform vec2 uResolution;
 uniform sampler2D uPictureTexture;
 uniform sampler2D uDisplacementTexture;
@@ -47,5 +47,5 @@ void main()
      gl_PointSize *= (1.0 / - viewPosition.z);
 
      //Varyings
-     vColor = vec3(pow(pictureIntensity, 2.5));
+     vColor = uColor * pow(pictureIntensity, 2.5);
 }
