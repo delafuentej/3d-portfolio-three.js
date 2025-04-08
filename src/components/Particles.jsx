@@ -54,7 +54,7 @@ export default function Particles() {
     displacementTexture.needsUpdate = true;
   });
 
-  const geometry = new THREE.PlaneGeometry(10, 10, 526, 526);
+  const geometry = new THREE.PlaneGeometry(10, 10, 356, 356);
   geometry.setIndex(null);
   geometry.deleteAttribute('normal');
 
