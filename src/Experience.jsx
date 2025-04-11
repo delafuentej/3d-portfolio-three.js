@@ -32,7 +32,7 @@ export default function Experience() {
           maxDistance={controls.maxDistance}
         />
 
-        <Environment preset="studio" />
+        <Environment preset="apartment" />
 
         <PresentationControls
           global
