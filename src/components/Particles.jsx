@@ -1,35 +1,24 @@
-import * as THREE from 'three';
-import { useRef, useEffect, useState } from 'react';
-import { useFrame, useThree } from '@react-three/fiber';
-import vertexShader from '../shaders/particles/vertex.glsl';
-import fragmentShader from '../shaders/particles/fragment.glsl';
-import { depth, lights, shadow } from 'three/tsl';
+import * as THREE from "three";
+import { useRef, useEffect, useState } from "react";
+import { useFrame, useThree } from "@react-three/fiber";
+import { useMobile } from "../hooks";
+
+import vertexShader from "../shaders/particles/vertex.glsl";
+import fragmentShader from "../shaders/particles/fragment.glsl";
 
 export default function Particles() {
   const pointsRef = useRef();
-
-  useEffect(() => {
-    if (pointsRef.current) {
-      pointsRef.current.traverse((child) => {
-        // pointsRef.current.layers.set(1);
-        child.castShadow = false;
-        child.receiveShadow = false;
-      });
-    }
-  }, []);
   const { size } = useThree();
- const [cursor, setCursor] = useState(new THREE.Vector2(9999, 9999));
+  const { isMobile } = useMobile;
 
+  const [cursor, setCursor] = useState(new THREE.Vector2(9999, 9999));
 
-
-  //Crear un canvas para la textura de desplazamiento
-  const canvas = document.createElement('canvas');
-  canvas.width = 128;
-  canvas.height = 128;
-  const ctx = canvas.getContext('2d');
+  // Canvas size adaptado
+  const canvas = document.createElement("canvas");
+  canvas.width = isMobile ? 64 : 128;
+  canvas.height = isMobile ? 64 : 128;
+  const ctx = canvas.getContext("2d");
   const displacementTexture = new THREE.CanvasTexture(canvas);
-
-  
 
   useEffect(() => {
     const handleMove = (e) => {
@@ -38,25 +27,40 @@ export default function Particles() {
       setCursor(new THREE.Vector2(x, y));
     };
 
-    window.addEventListener('pointermove', handleMove);
-    return () => window.removeEventListener('pointermove', handleMove);
-  }, [size]);
+    window.addEventListener("pointermove", handleMove);
+    return () => window.removeEventListener("pointermove", handleMove);
+  }, [size, canvas.width, canvas.height]);
+
+  useEffect(() => {
+    if (pointsRef.current) {
+      pointsRef.current.traverse((child) => {
+        child.castShadow = false;
+        child.receiveShadow = false;
+      });
+    }
+  }, []);
 
   useFrame(() => {
-    ctx.fillStyle = 'rgba(0,0,0,0.1)';
+    ctx.fillStyle = "rgba(0,0,0,0.1)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.beginPath();
-    ctx.fillStyle = 'white';
-    ctx.arc(cursor.x, cursor.y, 10, 0, Math.PI * 2);
+    ctx.fillStyle = "white";
+    ctx.arc(cursor.x, cursor.y, isMobile ? 6 : 10, 0, Math.PI * 2);
     ctx.fill();
 
     displacementTexture.needsUpdate = true;
   });
 
-  const geometry = new THREE.PlaneGeometry(10, 10, 356, 356);
+  // Geometry adaptada según el dispositivo
+  const geometry = new THREE.PlaneGeometry(
+    10,
+    10,
+    isMobile ? 128 : 356,
+    isMobile ? 128 : 356
+  );
   geometry.setIndex(null);
-  geometry.deleteAttribute('normal');
+  geometry.deleteAttribute("normal");
 
   const textureLoader = new THREE.TextureLoader();
   const material = new THREE.ShaderMaterial({
@@ -64,25 +68,26 @@ export default function Particles() {
     fragmentShader,
     transparent: true,
     depthWrite: false,
-    blending: THREE.AdditiveBlending, // 
+    blending: THREE.AdditiveBlending,
     depthTest: true,
     lights: false,
-    toneMapped:false,
+    toneMapped: false,
     side: THREE.DoubleSide,
     uniforms: {
-      uColor : { value: new THREE.Color('#00897B') },
-      uPictureTexture: { value: textureLoader.load('/images/me.png') },
+      uColor: { value: new THREE.Color("#00897B") },
+      uPictureTexture: { value: textureLoader.load("/images/me.png") },
       uDisplacementTexture: { value: displacementTexture },
     },
-    
   });
 
-  return <points 
-            ref={pointsRef}  
-            material={material} 
-            geometry={geometry} 
-            castShadow={false} 
-            receiveShadow={false}
-            frustumCulled={false}
-          />;
+  return (
+    <points
+      ref={pointsRef}
+      material={material}
+      geometry={geometry}
+      castShadow={false}
+      receiveShadow={false}
+      frustumCulled={false}
+    />
+  );
 }
