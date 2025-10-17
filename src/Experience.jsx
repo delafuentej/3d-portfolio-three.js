@@ -108,7 +108,7 @@ export default function Experience() {
             position={[3.75, 0.75, 0]}
             rotationY={-1.25}
             maxWidth={2}
-            color="#e1d8d0"
+            color="#00897B"
           >
             3d creative developer
           </CustomText>

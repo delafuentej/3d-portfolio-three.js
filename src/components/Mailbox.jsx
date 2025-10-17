@@ -6,28 +6,66 @@ Source: https://sketchfab.com/3d-models/game-ready-animated-mailbox-postbox-582c
 Title: Game Ready Animated Mailbox / Postbox
 */
 
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
+import { LoopOnce } from "three";
 import { useResponsiveValues } from "../utils/responsiveValues";
 
 function Mailbox(props) {
   const group = useRef();
   const { mailbox } = useResponsiveValues();
   const { nodes, materials, animations } = useGLTF("/models/mailbox2.glb");
+  const { actions } = useAnimations(animations, group);
+
+  // Refs para controlar estado sin re-renderizar
+  const isOpen = useRef(false);
+  const isAnimating = useRef(false);
+
+  // Duración límite de la animación (en segundos)
+  const MAX_TIME = 2.5;
+
+  useEffect(() => {
+    const action = actions["Take 001"];
+    if (action) {
+      action.clampWhenFinished = true; // se queda en el último frame
+      action.loop = LoopOnce; // solo una vez
+      action.paused = true; // empieza pausada
+    }
+  }, [actions]);
 
   const handleClick = () => {
-    if (!actions || !actions["Take 001"]) return;
-
     const action = actions["Take 001"];
-    action.reset().fadeIn(0.2).play();
+    if (!action) return;
 
-    // Detener la animación después de X segundos (por ejemplo 1.5s)
-    setTimeout(() => {
-      action.fadeOut(0.2).stop();
-    }, 2500); // 1500 ms = 1.5 segundos
+    action.paused = false;
+
+    if (!isOpen.current) {
+      // 🔹 ABRIR (normal)
+      action.reset();
+      action.timeScale = 1;
+      action.play();
+
+      // 🔸 Detener al final
+      setTimeout(() => {
+        action.paused = true;
+        action.time = action.getClip().duration; // se asegura de quedar al final
+        isOpen.current = true;
+      }, 2500); // ⏱ dura 2.5 segundos
+    } else {
+      // 🔹 CERRAR (reversa)
+      action.timeScale = -1; // animación inversa
+      action.paused = false;
+      action.play();
+
+      // 🔸 Detener al principio
+      setTimeout(() => {
+        action.paused = true;
+        action.time = 0;
+        isOpen.current = false;
+      }, 2500);
+    }
   };
 
-  const { actions } = useAnimations(animations, group);
   return (
     <group
       ref={group}
