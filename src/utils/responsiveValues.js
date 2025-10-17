@@ -28,12 +28,17 @@ export function useResponsiveValues() {
     },
     github: {
       scale: isMobile ? 0.008 : 0.01,
-      position: isMobile ? [-0.85, 1.5, -1.2] : [-0.85, 1.5, -1.5],
+      position: isMobile ? [-1.5, 1.5, -1.2] : [-1.5, 1.5, -1.5],
     },
     linkedin: {
       scale: isMobile ? 0.055 : 0.055,
-      position: isMobile ? [0.85, 2, -1.35] : [0.85, 2, -1.65],
+      position: isMobile ? [0, 2, -1.35] : [0, 2, -1.65],
       rotation: [Math.PI / 2, 0, 0],
+    },
+    mailbox: {
+      scale: isMobile ? 2.5 : 2.5,
+      position: isMobile ? [1.5, -1, -2] : [1.5, -1, -2],
+      rotation: [0, Math.PI, 0],
     },
   };
 }

@@ -15,6 +15,7 @@ import {
   MacBook,
   Hologram,
   LinkedinLogo,
+  Mailbox,
 } from "./components";
 
 export default function Experience() {
@@ -72,6 +73,8 @@ export default function Experience() {
           <GitHubLogo model={gitHubModel} />
 
           <LinkedinLogo />
+
+          <Mailbox />
 
           {/* <CustomText
   font={cabinSketchFont}
