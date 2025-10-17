@@ -8,10 +8,15 @@ Title: Linkdin Logo
 
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
+import useHoverGlow from "../hooks/useHoverGlow";
 import { useResponsiveValues } from "../utils/responsiveValues";
+import { config } from "../config";
 
 function LinkedinLogo(props) {
   const { nodes, materials } = useGLTF("/models/linkedin.glb");
+
+  const { hovered, setHovered } = useHoverGlow(materials, "#7FFF00", 1);
+
   const { linkedin } = useResponsiveValues();
   return (
     <group {...props} dispose={null}>
@@ -19,12 +24,9 @@ function LinkedinLogo(props) {
         position={linkedin.position}
         scale={linkedin.scale}
         rotation={linkedin.rotation}
-        onClick={() =>
-          window.open(
-            "https://www.linkedin.com/in/jesus-de-la-fuente-b5325047/",
-            "_blank"
-          )
-        }
+        onClick={() => window.open(`${config.socials.linkedin}`, "_blank")}
+        onPointerEnter={() => setHovered(true)}
+        onPointerLeave={() => setHovered(false)}
       >
         <mesh
           castShadow

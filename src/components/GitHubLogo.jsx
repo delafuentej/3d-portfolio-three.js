@@ -1,23 +1,38 @@
-import { useCursor } from "@react-three/drei";
-import { useState } from "react";
+import React, { useRef } from "react";
+import { useGLTF } from "@react-three/drei";
 import { useResponsiveValues } from "../utils/responsiveValues";
+import useHoverGlow from "../hooks/useHoverGlow";
 
-export default function GitHubLogo({ model }) {
-  const [hovered, setHovered] = useState(false);
-  useCursor(hovered);
+import { config } from "../config";
+function GitHubLogo(props) {
+  const { nodes, materials } = useGLTF("/models/github.glb");
+
+  const { hovered, setHovered } = useHoverGlow(materials, "#7FFF00", 10);
 
   const { github } = useResponsiveValues();
-
   return (
     <group
-      scale={github.scale}
+      {...props}
+      dispose={null}
       position={github.position}
-      rotation-y={0.13}
-      onClick={() => window.open("https://github.com/delafuentej", "_blank")}
-      onPointerOver={() => setHovered(true)}
-      onPointerOut={() => setHovered(false)}
+      scale={github.scale}
+      onClick={() => window.open(`${config.socials.github}`, "_blank")}
+      onPointerEnter={() => setHovered(true)}
+      onPointerLeave={() => setHovered(false)}
     >
-      <primitive object={model.scene} />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Extruded001.geometry}
+        material={nodes.Extruded001.material}
+        position={[-5.581, 52.031, -14.721]}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.399}
+      />
     </group>
   );
 }
+
+export default GitHubLogo;
+
+useGLTF.preload("/models/github.glb");

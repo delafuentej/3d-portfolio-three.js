@@ -7,22 +7,25 @@ Title: Game Ready Animated Mailbox / Postbox
 */
 
 import React, { useRef, useEffect } from "react";
+
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { LoopOnce } from "three";
+import useHoverGlow from "../hooks/useHoverGlow";
 import { useResponsiveValues } from "../utils/responsiveValues";
 
 function Mailbox(props) {
   const group = useRef();
+  // const [mailboxHovered, setMailboxHovered] = useState(false);
+  // useCursor(mailboxHovered);
+
   const { mailbox } = useResponsiveValues();
   const { nodes, materials, animations } = useGLTF("/models/mailbox2.glb");
   const { actions } = useAnimations(animations, group);
 
+  const { hovered, setHovered } = useHoverGlow(materials, "#7FFF00", 5);
+
   // Refs para controlar estado sin re-renderizar
   const isOpen = useRef(false);
-  const isAnimating = useRef(false);
-
-  // Duración límite de la animación (en segundos)
-  const MAX_TIME = 2.5;
 
   useEffect(() => {
     const action = actions["Take 001"];
@@ -75,6 +78,8 @@ function Mailbox(props) {
       position={mailbox.position}
       rotation={mailbox.rotation}
       onClick={handleClick}
+      onPointerEnter={() => setHovered(true)}
+      onPointerLeave={() => setHovered(false)}
     >
       <group name="Scene">
         <group
