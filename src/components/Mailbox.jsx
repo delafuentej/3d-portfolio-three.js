@@ -13,7 +13,20 @@ import { useResponsiveValues } from "../utils/responsiveValues";
 function Mailbox(props) {
   const group = useRef();
   const { mailbox } = useResponsiveValues();
-  const { nodes, materials, animations } = useGLTF("/models/mailbox_.glb");
+  const { nodes, materials, animations } = useGLTF("/models/mailbox2.glb");
+
+  const handleClick = () => {
+    if (!actions || !actions["Take 001"]) return;
+
+    const action = actions["Take 001"];
+    action.reset().fadeIn(0.2).play();
+
+    // Detener la animación después de X segundos (por ejemplo 1.5s)
+    setTimeout(() => {
+      action.fadeOut(0.2).stop();
+    }, 2500); // 1500 ms = 1.5 segundos
+  };
+
   const { actions } = useAnimations(animations, group);
   return (
     <group
@@ -23,6 +36,7 @@ function Mailbox(props) {
       scale={mailbox.scale}
       position={mailbox.position}
       rotation={mailbox.rotation}
+      onClick={handleClick}
     >
       <group name="Scene">
         <group
@@ -46,28 +60,89 @@ function Mailbox(props) {
                     name="Box001"
                     position={[-3.349, -29.203, 0]}
                     scale={1.01}
-                  />
+                  >
+                    <mesh
+                      name="Box001_01_-_Default_0"
+                      castShadow
+                      receiveShadow
+                      geometry={nodes["Box001_01_-_Default_0"].geometry}
+                      material={materials["01_-_Default"]}
+                    />
+                  </group>
                   <group
                     name="Box002"
                     position={[-2.728, -1.764, 0]}
-                    rotation={[0, 0, -Math.PI]}
-                  />
+                    rotation={[-0.002, 0, -Math.PI]}
+                  >
+                    <mesh
+                      name="Box002_01_-_Default_0"
+                      castShadow
+                      receiveShadow
+                      geometry={nodes["Box002_01_-_Default_0"].geometry}
+                      material={materials["01_-_Default"]}
+                    />
+                  </group>
                   <group
                     name="Cylinder001"
                     position={[6.625, -10.738, 9.669]}
                     rotation={[1.716, 1.558, 2.996]}
                     scale={0.866}
-                  />
+                  >
+                    <mesh
+                      name="Cylinder001_01_-_Default_0"
+                      castShadow
+                      receiveShadow
+                      geometry={nodes["Cylinder001_01_-_Default_0"].geometry}
+                      material={materials["01_-_Default"]}
+                    />
+                    <mesh
+                      name="Cylinder001_02_-_Default_0"
+                      castShadow
+                      receiveShadow
+                      geometry={nodes["Cylinder001_02_-_Default_0"].geometry}
+                      material={materials["02_-_Default"]}
+                    />
+                    <mesh
+                      name="Cylinder001_03_-_Default_0"
+                      castShadow
+                      receiveShadow
+                      geometry={nodes["Cylinder001_03_-_Default_0"].geometry}
+                      material={materials["03_-_Default"]}
+                    />
+                    <mesh
+                      name="Cylinder001_07_-_Default_0"
+                      castShadow
+                      receiveShadow
+                      geometry={nodes["Cylinder001_07_-_Default_0"].geometry}
+                      material={materials["07_-_Default"]}
+                    />
+                  </group>
                   <group
                     name="Cylinder002"
                     position={[5.562, -2.224, 0.643]}
                     rotation={[Math.PI, -1.565, Math.PI]}
-                  />
+                  >
+                    <mesh
+                      name="Cylinder002_09_-_Default_0"
+                      castShadow
+                      receiveShadow
+                      geometry={nodes["Cylinder002_09_-_Default_0"].geometry}
+                      material={materials["09_-_Default"]}
+                    />
+                  </group>
                   <group
                     name="Cylinder003"
                     position={[-10.172, -2.224, 0.643]}
                     rotation={[Math.PI, -1.565, Math.PI]}
-                  />
+                  >
+                    <mesh
+                      name="Cylinder003_09_-_Default_0"
+                      castShadow
+                      receiveShadow
+                      geometry={nodes["Cylinder003_09_-_Default_0"].geometry}
+                      material={materials["09_-_Default"]}
+                    />
+                  </group>
                   <group
                     name="Cylinder004"
                     position={[-2.545, -15.255, -55.696]}
@@ -83,94 +158,89 @@ function Mailbox(props) {
                         name="Object_17"
                         rotation={[-1.573, -0.716, 0]}
                         scale={[1, 0.98, 0.98]}
-                      />
+                      >
+                        <mesh
+                          name="Box003_13_-_Default_0"
+                          castShadow
+                          receiveShadow
+                          geometry={nodes["Box003_13_-_Default_0"].geometry}
+                          material={materials["13_-_Default"]}
+                        />
+                      </group>
                     </group>
                     <group name="Box004" position={[7.971, -8.888, 13.868]}>
                       <group
                         name="Object_14"
                         rotation={[-1.573, -1.553, 0]}
                         scale={[1, 0.98, 0.98]}
-                      />
+                      >
+                        <mesh
+                          name="Box004_14_-_Default_0"
+                          castShadow
+                          receiveShadow
+                          geometry={nodes["Box004_14_-_Default_0"].geometry}
+                          material={materials["14_-_Default"]}
+                        />
+                      </group>
                     </group>
                     <group name="Box005" position={[7.421, -8.268, 13.867]}>
                       <group
                         name="Object_20"
                         rotation={[-0.134, -1.431, 1.441]}
                         scale={[1, 0.98, 0.98]}
-                      />
+                      >
+                        <mesh
+                          name="Box005_14_-_Default_0"
+                          castShadow
+                          receiveShadow
+                          geometry={nodes["Box005_14_-_Default_0"].geometry}
+                          material={materials["14_-_Default"]}
+                        />
+                      </group>
                     </group>
                     <group name="Box006" position={[1.945, -8.111, 12.448]}>
                       <group
                         name="Object_11"
                         rotation={[-1.478, 0.711, 2.996]}
                         scale={[1, 0.98, 0.98]}
-                      />
+                      >
+                        <mesh
+                          name="Box006_15_-_Default_0"
+                          castShadow
+                          receiveShadow
+                          geometry={nodes["Box006_15_-_Default_0"].geometry}
+                          material={materials["15_-_Default"]}
+                        />
+                      </group>
                     </group>
-                    <group name="Tube001_09_-_Default_0">
-                      <mesh
-                        name="Tube001_09_-_Default_0_1"
-                        castShadow
-                        receiveShadow
-                        geometry={nodes["Tube001_09_-_Default_0_1"].geometry}
-                        material={materials["09_-_Default"]}
-                      />
-                      <mesh
-                        name="Tube001_09_-_Default_0_2"
-                        castShadow
-                        receiveShadow
-                        geometry={nodes["Tube001_09_-_Default_0_2"].geometry}
-                        material={materials["01_-_Default"]}
-                      />
-                      <mesh
-                        name="Tube001_09_-_Default_0_3"
-                        castShadow
-                        receiveShadow
-                        geometry={nodes["Tube001_09_-_Default_0_3"].geometry}
-                        material={materials["08_-_Default"]}
-                      />
-                      <mesh
-                        name="Tube001_09_-_Default_0_4"
-                        castShadow
-                        receiveShadow
-                        geometry={nodes["Tube001_09_-_Default_0_4"].geometry}
-                        material={materials["02_-_Default"]}
-                      />
-                      <mesh
-                        name="Tube001_09_-_Default_0_5"
-                        castShadow
-                        receiveShadow
-                        geometry={nodes["Tube001_09_-_Default_0_5"].geometry}
-                        material={materials["15_-_Default"]}
-                      />
-                      <mesh
-                        name="Tube001_09_-_Default_0_6"
-                        castShadow
-                        receiveShadow
-                        geometry={nodes["Tube001_09_-_Default_0_6"].geometry}
-                        material={materials["14_-_Default"]}
-                      />
-                      <mesh
-                        name="Tube001_09_-_Default_0_7"
-                        castShadow
-                        receiveShadow
-                        geometry={nodes["Tube001_09_-_Default_0_7"].geometry}
-                        material={materials["13_-_Default"]}
-                      />
-                      <mesh
-                        name="Tube001_09_-_Default_0_8"
-                        castShadow
-                        receiveShadow
-                        geometry={nodes["Tube001_09_-_Default_0_8"].geometry}
-                        material={materials["07_-_Default"]}
-                      />
-                      <mesh
-                        name="Tube001_09_-_Default_0_9"
-                        castShadow
-                        receiveShadow
-                        geometry={nodes["Tube001_09_-_Default_0_9"].geometry}
-                        material={materials["03_-_Default"]}
-                      />
-                    </group>
+                    <mesh
+                      name="Tube001_01_-_Default_0"
+                      castShadow
+                      receiveShadow
+                      geometry={nodes["Tube001_01_-_Default_0"].geometry}
+                      material={materials["01_-_Default"]}
+                    />
+                    <mesh
+                      name="Tube001_02_-_Default_0"
+                      castShadow
+                      receiveShadow
+                      geometry={nodes["Tube001_02_-_Default_0"].geometry}
+                      material={materials["02_-_Default"]}
+                    />
+                    <mesh
+                      name="Tube001_08_-_Default_0"
+                      castShadow
+                      receiveShadow
+                      geometry={nodes["Tube001_08_-_Default_0"].geometry}
+                      material={materials["08_-_Default"]}
+                    />
+                    <mesh
+                      name="Tube001_09_-_Default_0"
+                      castShadow
+                      receiveShadow
+                      geometry={nodes["Tube001_09_-_Default_0"].geometry}
+                      material={materials["09_-_Default"]}
+                    />
                   </group>
                 </group>
               </group>
@@ -184,4 +254,4 @@ function Mailbox(props) {
 
 export default Mailbox;
 
-useGLTF.preload("/models/mailbox_.glb");
+useGLTF.preload("/models/mailbox2.glb");

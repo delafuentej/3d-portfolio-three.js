@@ -36,8 +36,8 @@ export function useResponsiveValues() {
       rotation: [Math.PI / 2, 0, 0],
     },
     mailbox: {
-      scale: isMobile ? 2.5 : 2.5,
-      position: isMobile ? [1.5, -1, -2] : [1.5, -1, -2],
+      scale: isMobile ? 2 : 2.5,
+      position: isMobile ? [1.5, -1, -1.5] : [1.5, -1, -2],
       rotation: [0, Math.PI, 0],
     },
   };
