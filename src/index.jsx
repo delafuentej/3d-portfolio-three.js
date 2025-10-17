@@ -11,6 +11,8 @@ root.render(
   <>
     {/* <LoadingScreen /> */}
     <Canvas
+      gl={{ antialias: true }}
+      style={{ touchAction: "auto" }}
       camera={{
         fov: 45,
         near: 0.1,

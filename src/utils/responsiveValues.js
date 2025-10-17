@@ -11,7 +11,7 @@ export function useResponsiveValues() {
       maxDistance: isMobile ? 5 : 8,
     },
     hologram: {
-      position: isMobile ? [-2, 0.5, 1] : [-3.75, 0.75, 1],
+      position: isMobile ? [-2, 0.5, 1] : [-3.75, 0.5, 1],
       scale: isMobile ? [0.25, 0.25, 0.25] : [0.35, 0.35, 0.35],
     },
     light: {
@@ -24,7 +24,7 @@ export function useResponsiveValues() {
     },
     titleText: {
       fontSize: isMobile ? 0.6 : 1,
-      position: isMobile ? [0.3, 1.6, -1.5] : [0.6, 2, -1.7],
+      position: isMobile ? [-2, 2.5, 1] : [-3.75, 2, 1],
     },
     github: {
       scale: isMobile ? 0.008 : 0.01,

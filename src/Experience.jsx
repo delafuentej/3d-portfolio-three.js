@@ -35,6 +35,7 @@ export default function Experience() {
       <color args={["#2C2F33"]} attach="background" />
       {/* <Suspense fallback={null}> */}
       <OrbitControls
+        enableDamping
         enableZoom={controls.enableZoom}
         enableRotate
         enablePan={false}
@@ -76,14 +77,16 @@ export default function Experience() {
 
           <Mailbox />
 
-          {/* <CustomText
-  font={cabinSketchFont}
-  fontSize={titleText.fontSize}
-  position={titleText.position}
-  color="#00897B"
->
-  delafuentej
-</CustomText> */}
+          <CustomText
+            font={cabinSketchFont}
+            fontSize={titleText.fontSize}
+            position={titleText.position}
+            color="#00897B"
+            maxWidth={5}
+            rotationY={1.25}
+          >
+            delafuente
+          </CustomText>
 
           {/* <Text3D
             fontSize={titleText.fontSize}

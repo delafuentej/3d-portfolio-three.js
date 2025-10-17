@@ -1,10 +1,13 @@
 export const config = {
   contact: {
-    name: "delafuentej",
-    socials: {
-      linkedin: "https://www.linkedin.com/in/jesus-de-la-fuente-b5325047/",
-      github: "https://github.com/delafuentej",
-    },
-    mail: "",
+    name: "Jesús de la Fuente",
+    email: "jfuentelucas@gmail.com",
+    socials: [
+      {
+        name: "LinkedIn",
+        url: "https://www.linkedin.com/in/jesus-de-la-fuente-b5325047/",
+      },
+      { name: "GitHub", url: "https://github.com/delafuentej" },
+    ],
   },
 };

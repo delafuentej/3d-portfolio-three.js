@@ -81,7 +81,10 @@ function Mailbox(props) {
       onPointerEnter={() => setHovered(true)}
       onPointerLeave={() => setHovered(false)}
     >
-      <group name="Scene">
+      <group
+        name="Scene"
+        // onClick={() => window.open(`mailto:${config.contact.mail}`)}
+      >
         <group
           name="Sketchfab_model"
           rotation={[-Math.PI / 2, 0, 0]}

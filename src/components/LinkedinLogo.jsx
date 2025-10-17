@@ -24,7 +24,9 @@ function LinkedinLogo(props) {
         position={linkedin.position}
         scale={linkedin.scale}
         rotation={linkedin.rotation}
-        onClick={() => window.open(`${config.socials.linkedin}`, "_blank")}
+        onClick={() =>
+          window.open(`${config.contact.socials[0].url}`, "_blank")
+        }
         onPointerEnter={() => setHovered(true)}
         onPointerLeave={() => setHovered(false)}
       >

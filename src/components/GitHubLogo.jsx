@@ -5,9 +5,10 @@ import useHoverGlow from "../hooks/useHoverGlow";
 
 import { config } from "../config";
 function GitHubLogo(props) {
+  console.log("config", config);
   const { nodes, materials } = useGLTF("/models/github.glb");
 
-  const { hovered, setHovered } = useHoverGlow(materials, "#7FFF00", 10);
+  const { setHovered } = useHoverGlow(materials, "#7FFF00", 10);
 
   const { github } = useResponsiveValues();
   return (
@@ -16,9 +17,9 @@ function GitHubLogo(props) {
       dispose={null}
       position={github.position}
       scale={github.scale}
-      onClick={() => window.open(`${config.socials.github}`, "_blank")}
       onPointerEnter={() => setHovered(true)}
       onPointerLeave={() => setHovered(false)}
+      onClick={() => window.open(`${config.contact.socials[1].url}`, "_blank")}
     >
       <mesh
         castShadow
