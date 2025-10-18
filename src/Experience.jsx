@@ -16,6 +16,8 @@ import {
   Hologram,
   LinkedinLogo,
   Mailbox,
+  // CameraController,
+  // UIOverlay,
 } from "./components";
 
 export default function Experience() {
@@ -31,7 +33,7 @@ export default function Experience() {
 
   return (
     <>
-      {/* <Perf position="top-left" /> */}
+      <Perf position="top-left" />
       <color args={["#2C2F33"]} attach="background" />
       {/* <Suspense fallback={null}> */}
       <OrbitControls
@@ -69,9 +71,13 @@ export default function Experience() {
             occlude
           />
 
+          {/* <CameraController /> */}
+
           <MacBook model={macbookModel} />
 
           <GitHubLogo model={gitHubModel} />
+
+          {/* <UIOverlay /> */}
 
           <LinkedinLogo />
 
