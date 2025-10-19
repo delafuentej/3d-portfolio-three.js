@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import { useResponsiveValues } from "../utils/responsiveValues";
-import useHoverGlow from "../hooks/useHoverGlow";
+import { useResponsiveValues } from "../../utils/responsiveValues";
+import useHoverGlow from "../../hooks/useHoverGlow";
 
-import { config } from "../config";
+import { config } from "../../config";
 function GitHubLogo(props) {
   console.log("config", config);
   const { nodes, materials } = useGLTF("/models/github.glb");

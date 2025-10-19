@@ -1,10 +1,10 @@
 import * as THREE from "three";
 import { useRef, useEffect, useState } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import { useMobile } from "../hooks";
+import { useMobile } from "../../hooks";
 
-import vertexShader from "../shaders/particles/vertex.glsl";
-import fragmentShader from "../shaders/particles/fragment.glsl";
+import vertexShader from "../../shaders/particles/vertex.glsl";
+import fragmentShader from "../../shaders/particles/fragment.glsl";
 
 export default function Particles() {
   const pointsRef = useRef();

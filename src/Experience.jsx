@@ -5,9 +5,8 @@ import {
   useGLTF,
   Environment,
   Float,
-  Text3D,
 } from "@react-three/drei";
-import { Perf } from "r3f-perf";
+// import { Perf } from "r3f-perf";
 import { useResponsiveValues } from "./utils/responsiveValues";
 import {
   CustomText,
@@ -16,8 +15,6 @@ import {
   Hologram,
   LinkedinLogo,
   Mailbox,
-  // CameraController,
-  // UIOverlay,
 } from "./components";
 
 export default function Experience() {
@@ -33,7 +30,7 @@ export default function Experience() {
 
   return (
     <>
-      <Perf position="top-left" />
+      {/* <Perf position="top-left" /> */}
       <color args={["#2C2F33"]} attach="background" />
       {/* <Suspense fallback={null}> */}
       <OrbitControls
@@ -93,23 +90,6 @@ export default function Experience() {
           >
             delafuente
           </CustomText>
-
-          {/* <Text3D
-            fontSize={titleText.fontSize}
-            letterSpacing={0.15}
-            bevelEnabled={true}
-            bevelThickness={0.1}
-            bevelSize={0.075}
-            bevelSegments={10}
-            font="/fonts/Bangers_Regular.json"
-            size={0.5}
-            height={0.2}
-            position={[3, 1.5, -1]}
-            rotation-y={-1.25}
-          >
-            {`3d\ncreative\ndeveloper`}
-            <meshStandardMaterial color={"#00897B"} />
-          </Text3D> */}
 
           <CustomText
             font={bangersFont}

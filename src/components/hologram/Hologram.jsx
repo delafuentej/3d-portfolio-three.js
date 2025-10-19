@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { useMobile } from "../hooks";
+import { useMobile } from "../../hooks";
 import Particles from "./Particles";
 
 export default function Hologram({

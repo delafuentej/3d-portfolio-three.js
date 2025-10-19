@@ -14,7 +14,6 @@
     "vite-plugin-restart": "^0.4.2"
   },
   "dependencies": {
-    "@react-spring/three": "^10.0.3",
     "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.13.5",
     "@tailwindcss/vite": "^4.1.14",

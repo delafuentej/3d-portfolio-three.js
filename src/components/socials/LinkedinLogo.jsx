@@ -8,9 +8,9 @@ Title: Linkdin Logo
 
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import useHoverGlow from "../hooks/useHoverGlow";
-import { useResponsiveValues } from "../utils/responsiveValues";
-import { config } from "../config";
+import useHoverGlow from "../../hooks/useHoverGlow";
+import { useResponsiveValues } from "../../utils/responsiveValues";
+import { config } from "../../config";
 
 function LinkedinLogo(props) {
   const { nodes, materials } = useGLTF("/models/linkedin.glb");

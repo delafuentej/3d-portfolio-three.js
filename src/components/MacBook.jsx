@@ -18,6 +18,7 @@ export default function MacBook({ model }) {
         position={[0, 1.56, -1.4]}
         rotation-x={-0.256}
         occlude
+        style={{ pointerEvents: "auto" }}
       >
         <iframe src="https://3d-projects-beta.vercel.app/" />
       </Html>

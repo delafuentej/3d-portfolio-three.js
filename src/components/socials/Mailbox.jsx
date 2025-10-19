@@ -10,8 +10,8 @@ import React, { useRef, useEffect } from "react";
 
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { LoopOnce } from "three";
-import useHoverGlow from "../hooks/useHoverGlow";
-import { useResponsiveValues } from "../utils/responsiveValues";
+import useHoverGlow from "../../hooks/useHoverGlow";
+import { useResponsiveValues } from "../../utils/responsiveValues";
 
 function Mailbox(props) {
   const group = useRef();
