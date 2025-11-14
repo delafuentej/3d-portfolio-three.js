@@ -42,14 +42,13 @@ function Mailbox(props) {
     const action = actions["Take 001"];
     if (!action) return;
 
-    window.open(
-      `mailto:${config.contact.email}?subject=Inquiry%20about%20your%203D%20development%20services&body=Hello%20[Your%20Name],%0A%0AI%20came%20across%20your%20portfolio%20and%20I'm%20interested%20in%20learning%20more%20about%20the%203D%20development%20services%20you%20offer.%0A%0ACould%20you%20please%20share%20more%20details%20about%20your%20expertise%20and%20availability%3F%0A%0AThank%20you%20for%20your%20time!%0A%0ABest%20regards,%0A[Sender%20Name]`
-    );
-
     action.paused = false;
 
     if (!isOpen.current) {
       // 🔹 ABRIR (normal)
+      // window.open(
+      //  `mailto:${config.contact.email}?subject=Inquiry%20about%20your%203D%20development%20services&body=Hello%20[Your%20Name],%0A%0AI%20came%20across%20your%20portfolio%20and%20I'm%20interested%20in%20learning%20more%20about%20the%203D%20development%20services%20you%20offer.%0A%0ACould%20you%20please%20share%20more%20details%20about%20your%20expertise%20and%20availability%3F%0A%0AThank%20you%20for%20your%20time!%0A%0ABest%20regards,%0A[Sender%20Name]`
+      // );
       action.reset();
       action.timeScale = 1;
       action.play();
@@ -87,10 +86,7 @@ function Mailbox(props) {
       onPointerEnter={() => setHovered(true)}
       onPointerLeave={() => setHovered(false)}
     >
-      <group
-        name="Scene"
-        // onClick={() => window.open(`mailto:${config.contact.mail}`)}
-      >
+      <group name="Scene">
         <group
           name="Sketchfab_model"
           rotation={[-Math.PI / 2, 0, 0]}
