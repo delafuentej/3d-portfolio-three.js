@@ -21,8 +21,9 @@ export default function Experience() {
   const { controls, hologram, light, titleText } = useResponsiveValues();
   //models
   const macbookModel = useGLTF(
-    "https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/macbook/model.gltf"
+    "https://threejs-journey.com/resources/models/macbook_model.gltf"
   );
+
   const gitHubModel = useGLTF("/models/github.glb");
   //fonts
   const bangersFont = "./fonts/bangers-v20-latin-regular.woff";
@@ -71,6 +72,8 @@ export default function Experience() {
           {/* <CameraController /> */}
 
           <MacBook model={macbookModel} />
+
+          {/* <Mackbook2 /> */}
 
           <GitHubLogo model={gitHubModel} />
 
