@@ -15,11 +15,16 @@ body,
 .r3f {
   touch-action: none;
 }
-
 .htmlScreen iframe {
-  width: 1014px;
-  height: 670px;
   border: none;
+  width: 1024px;
+  height: 640px;
+  overflow-y: none;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.htmlScreen iframe::-webkit-scrollbar {
+  display: none;
 }
 
 @media (max-width: 768px) {

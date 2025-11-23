@@ -20,7 +20,10 @@ export default function MacBook({ model }) {
         occlude
         style={{ pointerEvents: "auto" }}
       >
-        <iframe src="https://3d-projects-beta.vercel.app/" />
+        <iframe
+          src="https://3d-projects-beta.vercel.app/"
+          className="screen-iframe"
+        />
       </Html>
     </primitive>
   );

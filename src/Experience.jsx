@@ -75,8 +75,6 @@ export default function Experience() {
 
           <MacBook model={macbookModel} />
 
-          {/* <Mackbook2 /> */}
-
           <GitHubLogo model={gitHubModel} />
 
           {/* <UIOverlay /> */}

@@ -11,6 +11,7 @@ root.render(
   <>
     {/* <LoadingScreen /> */}
     <Canvas
+      dpr={[1, 2]}
       gl={{ antialias: true }}
       style={{ touchAction: "auto" }}
       camera={{
