@@ -41,6 +41,8 @@ export default function Experience() {
         enablePan={false}
         minDistance={2}
         maxDistance={controls.maxDistance}
+        minPolarAngle={Math.PI / 2} // ← Mantener la cámara nivelada
+        maxPolarAngle={Math.PI / 2} // ← Impide rotar en X
       />
 
       <Environment preset="studio" />
@@ -48,7 +50,7 @@ export default function Experience() {
       <PresentationControls
         global
         rotation={[0.13, 0.1, 0]}
-        polar={[-0.4, 0.2]}
+        polar={[0, 0]} //0 is up and down limit
         azimuth={[-2, 0.75]}
         config={{ mass: 2, tension: 400 }}
       >

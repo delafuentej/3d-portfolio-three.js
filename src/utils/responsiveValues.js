@@ -8,7 +8,7 @@ export function useResponsiveValues() {
     scaleFactor,
     controls: {
       enableZoom: !isMobile,
-      maxDistance: isMobile ? 5 : 8,
+      maxDistance: isMobile ? 5 : 10,
     },
     hologram: {
       position: isMobile ? [-2, 0.5, 1] : [-3.75, 0.5, 1],
