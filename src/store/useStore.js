@@ -1,5 +1,15 @@
 import { create } from "zustand";
+
 const useStore = create((set) => ({
+  ready: false,
+  setReady: (val) => set({ ready: val }),
+
+  hidden: false,
+  setHidden: (val) => set({ hidden: val }),
+
+  showAnimation: false,
+  setShowAnimation: (val) => set({ showAnimation: val }),
+
   currentView: "home", // "projects", "about", "contact"
   setCurrentView: (view) => set({ currentView: view }),
 

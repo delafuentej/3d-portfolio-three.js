@@ -1,14 +1,15 @@
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import Experience from "./Experience";
-import LoadingScreen from "./components/LoadingScreen";
+import { LoadingScreen } from "./components";
+import useStore from "./store/useStore";
 
 function App() {
-  const [ready, setReady] = useState(false);
+  const { ready, setReady } = useStore();
 
   return (
     <>
-      <LoadingScreen ready={ready} />
+      <LoadingScreen />
 
       <Canvas
         dpr={[1, 2]}
@@ -27,7 +28,7 @@ function App() {
         }}
       >
         <Suspense fallback={null}>
-          <Experience />
+          <Experience ready={ready} />
         </Suspense>
       </Canvas>
     </>
