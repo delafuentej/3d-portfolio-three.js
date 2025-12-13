@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+html,
+body,
+#root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: ivory;
+  overflow: hidden;
+}
+
+.r3f {
+  touch-action: none;
+}
+.htmlScreen iframe {
+  border: none;
+  width: 1024px;
+  height: 640px;
+  overflow-y: none;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.htmlScreen iframe::-webkit-scrollbar {
+  display: none;
+}
+
+//loading screen
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 4rem;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  background-color: bg-skyBlue-300;
+  background-image: linear-gradient(0deg, #63d2f8 0%, #aeeafc 74%);
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+.loading-screen__container {
+  /* Evita esto si es muy pesado */
+  padding: 1.3rem;
+  filter: blur(5px);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 20px white;
+  transition: all 2s ease;
+  transition: opacity 0.3s ease;
+}
+.loading-screen--hidden {
+  animation: fade-out 0.5s ease-in-out forwards 1s;
+}
+loading-screen__title {
+  font-size: 4rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #1a202c;
+  margin-top: 1.3rem;
+  text-align: center;
+}
+
+.progress__container {
+  width: 100%;
+  max-width: 300px;
+  height: 1rem;
+  background-color: rgb(102 106 113 / 40%);
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  margin-top: 2rem;
+  margin: auto;
+}
+
+.progress__bar {
+  width: 0;
+  height: 100%;
+  background-color: #1a202c;
+  transition: width 0.3s ease-in-out;
+}
+.progress__indicator {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .htmlScreen {
+    width: 95vw;
+    aspect-ratio: 16 / 9;
+  }
+  .loading-screen {
+    padding: 2rem;
+  }
+
+  .loading-screen__title {
+    font-size: 2rem;
+  }
+
+  .progress__container {
+    height: 0.75rem;
+  }
+}
