@@ -1,15 +1,14 @@
 import { useProgress } from "@react-three/drei";
 import { useEffect } from "react";
 import useStore from "../../store/useStore";
-import logo from "/images/me.png";
+import progressContainerImg from "/images/me.png";
 import BlinkText from "./BlinkText";
 import BlinkTextTitle from "./BlinkTextTitle";
 
 const LoadingScreen = () => {
   const { progress, active } = useProgress();
-
   const {
-    loading: { visible, showExitAnimation, startExit, hide, finished, finish },
+    loading: { visible, startExit, finished, finish },
     app: { setReady },
   } = useStore();
 
@@ -31,10 +30,10 @@ const LoadingScreen = () => {
   // 🔑 ESTA LÍNEA ES CLAVE
   if (!visible || finished) return null;
 
-  console.log("visible:", visible, "active:", active, "progress:", progress);
+  // console.log("visible:", visible, "active:", active, "progress:", progress);
 
   return (
-    <div className="flex h-screen w-screen justify-center items-center bg-[#2c2f33] text-custom2">
+    <div className="loader-container">
       <BlinkText
         additionalClassName="top-20 right-80"
         lines={["creative developer", "interactive experiences"]}
@@ -42,20 +41,16 @@ const LoadingScreen = () => {
 
       <BlinkText lines={["frontend developer", "de la fuente"]} />
 
-      <div className="flex space-x-20 text-9xl font-bold evmos text-[#00897b] relative">
-        <div className="uppercase evmos">
-          <BlinkTextTitle text="3d portfolio" stagger={0.1} duration={0.6} />
-        </div>
+      <div className="loader-title">
+        <BlinkTextTitle text="3d portfolio" stagger={0.1} duration={0.6} />
 
-        <div className="relative w-32 h-32">
+        <div className="progress-container">
           <img
-            src={logo}
-            alt="logo"
-            className="w-full h-full rounded-full opacity-30"
+            src={progressContainerImg}
+            alt="progress-container-img"
+            className="progress-container-img"
           />
-          <div className="absolute inset-0 flex items-center justify-center text-5xl font-bold">
-            {Math.floor(progress)}
-          </div>
+          <div className="progress-indicator">{Math.floor(progress)}</div>
         </div>
       </div>
 
@@ -71,13 +66,6 @@ const LoadingScreen = () => {
           "three.js · r3f · tailwindcss · gsap ",
         ]}
       />
-
-      {showExitAnimation && (
-        <>
-          <div className="svg-container bottom-half" />
-          <div className="svg-container top-half" />
-        </>
-      )}
     </div>
   );
 };

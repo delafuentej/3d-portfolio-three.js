@@ -1,7 +1,7 @@
 import { Html } from "@react-three/drei";
 import { useResponsiveValues } from "../utils/responsiveValues";
 
-export default function MacBook({ model, ready }) {
+export default function MacBook({ model }) {
   const { macbook } = useResponsiveValues();
 
   return (
