@@ -14,6 +14,7 @@
     "vite-plugin-restart": "^0.4.2"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.13.5",
     "@tailwindcss/vite": "^4.1.14",
@@ -21,6 +22,7 @@
     "r3f-perf": "7.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^5.5.0",
     "tailwindcss": "^4.1.14",
     "three": "^0.174.0",
     "zustand": "^5.0.8"
