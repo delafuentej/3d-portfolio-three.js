@@ -4,7 +4,7 @@ import { SplitText } from "gsap/SplitText";
 
 gsap.registerPlugin(SplitText);
 
-const BlinkText = ({ lines, additionalClassName = "" }) => {
+const BlinkText = ({ lines, additionalClassName = "mt-5" }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const BlinkText = ({ lines, additionalClassName = "" }) => {
   return (
     <div
       ref={containerRef}
-      className={`absolute text-xs uppercase inline-block text-[#f1f3f3] ${additionalClassName}`}
+      className={`blink-text-container ${additionalClassName}`}
     >
       {lines.map((line, idx) => (
         <p key={idx}>{line}</p>

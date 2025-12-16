@@ -7,7 +7,7 @@ gsap.registerPlugin(SplitText);
 const BlinkTextTitle = ({
   text,
   as = "p",
-  className = "text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl",
+  className = "blink-text-title",
   type = "chars", // puede ser "chars", "words" o "lines"
   stagger = 0.05,
   duration = 5,

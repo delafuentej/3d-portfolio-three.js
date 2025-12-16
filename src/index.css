@@ -43,12 +43,18 @@ body,
     @apply flex space-x-20 text-9xl font-bold  text-[#00897b] relative uppercase;
   }
   .progress-container {
-    @apply relative w-32 h-32;
+    @apply relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-40 lg:h-40 xl:w-48 xl:h-48;
   }
   .progress-container-img {
-    @apply w-full h-full rounded-full opacity-30;
+    @apply w-full h-full rounded-full opacity-30 object-cover;
   }
   .progress-indicator {
-    @apply absolute inset-0 flex items-center justify-center text-5xl font-bold;
+    @apply absolute inset-0 flex items-center justify-center text-6xl font-bold sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl;
+  }
+  .blink-text-container {
+    @apply absolute inline-block text-xs uppercase text-[#f1f3f3] sm:text-4xl md:text-4xl lg:text-4xl xl:text-4xl;
+  }
+  .blink-text-title {
+    @apply inline-flex text-3xl sm:text-xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-7xl;
   }
 }

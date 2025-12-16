@@ -55,7 +55,7 @@ const LoadingScreen = () => {
       </div>
 
       <BlinkText
-        additionalClassName="bottom-36 left-16"
+        additionalClassName="bottom-60 left-16"
         lines={["immersive experiences", "crafting worlds", "artistic shaders"]}
         a
       />
