@@ -16,11 +16,11 @@ const LoadingScreen = () => {
     if (finished) return;
 
     if (!active && progress === 100) {
-      startExit();
+      // startExit();
 
       const timeout = setTimeout(() => {
-        finish();
-        setReady(true);
+        // finish();
+        // setReady(true);
       }, 2000);
 
       return () => clearTimeout(timeout);
@@ -35,7 +35,7 @@ const LoadingScreen = () => {
   return (
     <div className="loader-container">
       <BlinkText
-        additionalClassName="top-20 right-80"
+        additionalClassName="blink-top-right"
         lines={["creative developer", "interactive experiences"]}
       />
 
@@ -55,12 +55,12 @@ const LoadingScreen = () => {
       </div>
 
       <BlinkText
-        additionalClassName="bottom-60 left-16"
+        additionalClassName="blink-bottom-left"
         lines={["immersive experiences", "crafting worlds", "artistic shaders"]}
         a
       />
       <BlinkText
-        additionalClassName="bottom-20"
+        additionalClassName="blink-bottom-center"
         lines={[
           "webgl · webgpgu · glsl shaders",
           "three.js · r3f · tailwindcss · gsap ",

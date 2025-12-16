@@ -35,15 +35,106 @@ body,
 }
 
 @layer components {
-  /* loading-screen */
+  /* =========================
+     Loading Screen
+  ========================== */
+
+  .loader-container {
+    @apply flex h-screen w-screen items-center justify-center
+           bg-[#2c2f33] overflow-hidden relative;
+  }
+
+  /* ===== Title + Progress ===== */
+
+  .loader-title {
+    @apply relative flex items-center gap-8
+           font-bold uppercase text-[#00897b];
+  }
+
+  .loader-title-text {
+    @apply text-2xl
+           sm:text-3xl
+           md:text-4xl
+           lg:text-5xl
+           xl:text-6xl;
+  }
+
+  /* ===== Progress ===== */
+
+  .progress-container {
+    @apply relative
+           w-20 h-20
+           sm:w-24 sm:h-24
+           md:w-28 md:h-28
+           lg:w-32 lg:h-32
+           xl:w-40 xl:h-40;
+  }
+
+  .progress-container-img {
+    @apply w-full h-full rounded-full opacity-30 object-cover;
+  }
+
+  .progress-indicator {
+    @apply absolute inset-0 flex items-center justify-center
+           font-bold
+           text-2xl
+           text-[#00897b]
+           sm:text-3xl
+           md:text-4xl
+           lg:text-5xl
+           xl:text-6xl;
+  }
+
+  /* ===== Blink positions ===== */
+
+  .blink-top-right {
+    @apply absolute top-6 right-6
+           sm:top-10 sm:right-12
+           lg:top-20 lg:right-32;
+  }
+
+  .blink-bottom-left {
+    @apply absolute bottom-24 left-6
+           sm:bottom-32 sm:left-12
+           lg:bottom-40 lg:left-16;
+  }
+
+  .blink-bottom-center {
+    @apply absolute bottom-10 left-1/2 -translate-x-1/2;
+  }
+
+  /* ===== Blink text ===== */
+
+  .blink-text-container {
+    @apply uppercase text-[#f1f3f3]
+           text-xs
+           sm:text-sm
+           md:text-base
+           lg:text-lg
+           xl:text-xl;
+  }
+
+  .blink-text-title {
+    @apply inline-flex
+           text-2xl
+           sm:text-3xl
+           md:text-4xl
+           lg:text-5xl
+           xl:text-6xl;
+  }
+}
+
+/*  
+@layer components {
+
   .loader-container {
     @apply flex h-screen w-screen justify-center items-center bg-[#2c2f33];
   }
   .loader-title {
-    @apply flex space-x-20 text-9xl font-bold  text-[#00897b] relative uppercase;
+    @apply flex space-x-20 text-9xl font-bold  text-[#00897b] relative uppercase text-xl sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl;
   }
   .progress-container {
-    @apply relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-40 lg:h-40 xl:w-48 xl:h-48;
+    @apply relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-40 lg:h-40 xl:w-48 xl:h-48 xl:mr-40;
   }
   .progress-container-img {
     @apply w-full h-full rounded-full opacity-30 object-cover;
@@ -51,10 +142,26 @@ body,
   .progress-indicator {
     @apply absolute inset-0 flex items-center justify-center text-6xl font-bold sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl;
   }
+  .blink-top-right {
+    @apply absolute top-6 right-6
+           sm:top-10 sm:right-12
+           lg:top-20 lg:right-32;
+  }
+  .blink-bottom-left {
+    @apply absolute bottom-26 left-6
+           sm:bottom-32 sm:left-12
+           lg:bottom-40 lg:left-16;
+  }
+  .blink-bottom-center {
+    @apply absolute bottom-10 left-1/2
+           -translate-x-1/2;
+  }
+
   .blink-text-container {
-    @apply absolute inline-block text-xs uppercase text-[#f1f3f3] sm:text-4xl md:text-4xl lg:text-4xl xl:text-4xl;
+    @apply absolute inline-block text-xs uppercase text-[#f1f3f3] sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl;
   }
   .blink-text-title {
-    @apply inline-flex text-3xl sm:text-xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-7xl;
+    @apply inline-flex text-xl  sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl;
   }
 }
+*/
