@@ -16,11 +16,11 @@ const LoadingScreen = () => {
     if (finished) return;
 
     if (!active && progress === 100) {
-      // startExit();
+      startExit();
 
       const timeout = setTimeout(() => {
-        // finish();
-        // setReady(true);
+        finish();
+        setReady(true);
       }, 2000);
 
       return () => clearTimeout(timeout);
