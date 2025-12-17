@@ -10,11 +10,10 @@ import {
 } from "react-icons/io5";
 
 import { useResponsiveConfig } from "../../hooks/useResponsiveConfig";
+import { playSound } from "../../audio/audioEngine";
 
 export const Joystick = forwardRef(
   ({ onSegmentChange, menuItems, isOpen }, ref) => {
-    console.log("isOpen-joystick", isOpen);
-
     const config = useResponsiveConfig();
     const innerRef = useRef(null);
     const joystickRef = innerRef || ref;
@@ -59,15 +58,13 @@ export const Joystick = forwardRef(
               }
 
               if (isOpen) {
-                new Audio("/audio/menu-select.mp3").play().catch(() => {});
+                playSound("select");
               }
             }
           } else {
             if (activeSegmentRef.current !== null) {
               activeSegmentRef.current = null;
-              if (typeof onSegmentChange === "function") {
-                onSegmentChange(null);
-              }
+              onSegmentChange?.(null);
             }
           }
 

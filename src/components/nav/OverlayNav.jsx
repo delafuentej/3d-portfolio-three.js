@@ -1,15 +1,29 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import CircularMenu from "./CircularMenu";
 import useStore from "../../store/useStore";
 import { ImSwitch } from "react-icons/im";
+import ToggleButton from "./ToggleButton";
+import { useAudio } from "../../hooks/useAudio";
 
 const OverlayNav = () => {
   const overlayRef = useRef(null);
 
   const isMenuOpen = useStore((state) => state.menu.isOpen);
   const toggleMenu = useStore((state) => state.menu.toggle);
+
+  // audios:
+  const openAudio = useAudio("/audio/nav/menu-open.mp3");
+  const closeAudio = useAudio("/audio/nav/menu-close.mp3");
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      openAudio.play();
+    } else {
+      closeAudio.play();
+    }
+  }, [isMenuOpen]);
 
   useGSAP(
     () => {
@@ -37,11 +51,9 @@ const OverlayNav = () => {
       className="menu-overlay opacity-0 pointer-events-none"
       ref={overlayRef}
     >
-      <div className="close-btn" onClick={toggleMenu}>
-        <ImSwitch className="switch-off" />
-      </div>
       <div className="menu-bg"></div>
       <CircularMenu />
+      <ToggleButton />
     </div>
   );
 };

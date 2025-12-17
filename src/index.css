@@ -27,6 +27,16 @@ body,
   display: none;
 }
 
+@layer utilities {
+  .flickerHover {
+    animation: flickerHover 350ms ease-in-out forwards;
+  }
+
+  .contentFlickerHover {
+    animation: contentFlickerHover 350ms ease-in-out forwards;
+  }
+}
+
 @media (max-width: 768px) {
   .htmlScreen {
     width: 95vw;
@@ -139,6 +149,7 @@ body,
       opacity-50
       hover:opacity-100
       transition-all
+      z-51
       duration-300;
 
     bottom: -6rem;
@@ -161,35 +172,12 @@ body,
     @apply text-red-500 hover:scale-125 transition-transform;
   }
 
-  /*  close btn */
-  .close-btn {
-    @apply relative
-      w-6
-      h-6
-      cursor-pointer;
-  }
-
-  .close-btn-bar {
-    @apply absolute
-      top-1/2
-      w-6
-      h-0.5
-      bg-white;
-  }
-
-  .close-btn-bar:first-child {
-    @apply rotate-45;
-  }
-
-  .close-btn-bar:last-child {
-    @apply -rotate-45;
-  }
-
   /* menu-overlay */
   .menu-overlay {
     @apply fixed
       inset-0
       flex
+      flex-col
       items-center
       justify-center
       overflow-hidden
@@ -199,19 +187,28 @@ body,
     width: 100vw;
   }
 
+  .circular-menu {
+    @apply flex justify-center items-center relative w-[600px] h-[600px] z-50;
+  }
+
   .menu-bg {
     @apply absolute
       inset-0
       bg-no-repeat
       bg-center
+      z-10
       bg-cover;
+
+    /* background-image: url("/images/overlay.png"); */
   }
 
   /* joystick */
   .joystick {
     @apply absolute
-      top-1/2
-      left-1/2
+   
+      lg:left-1/2
+    
+      md:-translate-x-1/2
       -translate-x-1/2
       -translate-y-1/2
       w-[100px]
@@ -223,10 +220,57 @@ body,
       justify-center
       select-none
       cursor-grab
-      z-[100];
+      z-51;
   }
   .joystick:active {
     @apply cursor-grabbing scale-95;
+  }
+
+  .center-icon {
+    @apply absolute text-black text-[12px];
+  }
+  .center-main {
+    @apply text-[30px];
+  }
+  .center-up {
+    @apply top-3 left-1/2 -translate-x-1/2;
+  }
+  .center-down {
+    @apply bottom-3 left-1/2 -translate-x-1/2;
+  }
+
+  .center-left {
+    @apply left-3 top-1/2 -translate-y-1/2;
+  }
+
+  .center-right {
+    @apply right-3 top-1/2 -translate-y-1/2;
+  }
+  /* segment */
+  .menu-segment {
+    @apply absolute w-full h-full text-white bg-white/5 backdrop-blur-[20px] cursor-pointer;
+  }
+
+  .menu-segment:hover {
+    @apply z-50;
+    animation: flickerHover;
+  }
+
+  .segment-content {
+    @apply absolute flex flex-col items-center justify-center font-semibold text-center;
+  }
+
+  .menu-segment:hover .segment-content {
+    @apply z-50;
+    animation: contentFlickerHover;
+  }
+
+  .item-icon {
+    @apply text-[40px] mb-2.5;
+  }
+
+  .label {
+    @apply normal-case  text-[15px] font-medium;
   }
 }
 

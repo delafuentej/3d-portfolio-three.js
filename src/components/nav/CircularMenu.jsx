@@ -3,11 +3,21 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Segment from "./Segment";
 import { Joystick } from "./Joystick";
-import * as Icons from "react-icons/io5";
+import * as IoIcons from "react-icons/io5";
+import * as FaIcons from "react-icons/fa";
+import * as Fa6Icons from "react-icons/fa6";
 import { menuItems } from "../../constants";
 import useStore from "../../store/useStore";
 
 import { useResponsiveConfig } from "../../hooks/useResponsiveConfig";
+
+const Icons = {
+  ...IoIcons,
+  ...FaIcons,
+  ...Fa6Icons,
+};
+
+gsap.defaults({ overwrite: "auto" });
 
 const CircularMenu = () => {
   const containerRef = useRef(null);
@@ -26,13 +36,15 @@ const CircularMenu = () => {
   const config = useResponsiveConfig();
 
   const handleSegmentChange = (activeIndex) => {
+    if (activeIndex === null) return;
+
     segmentRefs.current.forEach((seg, i) => {
       const color = menuItems[i].activeColor || "#FF5722"; // color activo por segmento
-      if (i === activeIndex) {
-        gsap.to(seg, { fill: color, duration: 0.3 });
-      } else {
-        gsap.to(seg, { fill: "#CCCCCC", duration: 0.3 }); // color inactivo
-      }
+      gsap.to(seg, {
+        backgroundColor: i === activeIndex ? color : "rgba(255,255,255,0.05)",
+        duration: 0.3,
+        overwrite: "auto",
+      });
     });
   };
 
@@ -118,7 +130,7 @@ const CircularMenu = () => {
             <Segment
               key={i}
               ref={addToRefs}
-              item={{ ...item, icon: Icon }}
+              item={{ ...item, icon: Icon, onHover: handleSegmentChange }}
               index={i}
               total={menuItems.length}
               config={config}

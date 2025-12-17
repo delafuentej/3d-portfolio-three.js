@@ -47,6 +47,7 @@ const Segment = forwardRef(function Segment(
 
   return (
     <a
+      ref={ref}
       href={item.href}
       className="menu-segment"
       style={{
@@ -55,9 +56,10 @@ const Segment = forwardRef(function Segment(
         height: `${menuSize}px`,
         position: "absolute",
       }}
+      onMouseEnter={() => item.onHover?.(index)}
+      onMouseLeave={() => item.onHover?.(null)}
     >
       <div
-        ref={ref} // ✅ AHORA SÍ
         className="segment-content"
         style={{
           left: `${contentX}px`,

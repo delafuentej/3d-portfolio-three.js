@@ -2,6 +2,9 @@
 import { create } from "zustand";
 
 const useStore = create((set, get) => ({
+  /* =====================
+     APP
+  ===================== */
   app: {
     ready: false,
     setReady: (ready) =>
@@ -10,6 +13,9 @@ const useStore = create((set, get) => ({
       })),
   },
 
+  /* =====================
+     LOADING
+  ===================== */
   loading: {
     visible: true,
     finished: false,
@@ -17,10 +23,7 @@ const useStore = create((set, get) => ({
 
     startExit: () =>
       set((state) => ({
-        loading: {
-          ...state.loading,
-          showExitAnimation: true,
-        },
+        loading: { ...state.loading, showExitAnimation: true },
       })),
 
     finish: () =>
@@ -28,19 +31,19 @@ const useStore = create((set, get) => ({
         loading: {
           ...state.loading,
           visible: false,
-          finished: true, // Marca la carga como terminada
+          finished: true,
         },
       })),
 
     hide: () =>
       set((state) => ({
-        loading: {
-          ...state.loading,
-          visible: false,
-        },
+        loading: { ...state.loading, visible: false },
       })),
   },
 
+  /* =====================
+     VIEW
+  ===================== */
   view: {
     current: "home",
     setCurrent: (view) =>
@@ -48,25 +51,19 @@ const useStore = create((set, get) => ({
         view: { ...state.view, current: view },
       })),
   },
-  /* MENU SLICE */
+
+  /* =====================
+     MENU
+  ===================== */
   menu: {
     isOpen: false,
-
-    toggle: () => {
-      const isOpen = get().menu.isOpen;
-
-      // audio
-      new Audio(
-        isOpen ? "/audio/menu-close.mp3" : "/audio/menu-open.mp3"
-      ).play();
-
+    toggle: () =>
       set((state) => ({
         menu: {
           ...state.menu,
-          isOpen: !isOpen,
+          isOpen: !state.menu.isOpen,
         },
-      }));
-    },
+      })),
 
     open: () =>
       set((state) => ({
@@ -78,6 +75,10 @@ const useStore = create((set, get) => ({
         menu: { ...state.menu, isOpen: false },
       })),
   },
+
+  /* =====================
+     CAMERA
+  ===================== */
   camera: {
     positions: {
       home: { x: 4, y: 2, z: 6 },
