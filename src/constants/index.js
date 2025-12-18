@@ -3,40 +3,40 @@ export const menuItems = [
     label: "Mision",
     icon: "IoCompassSharp",
     href: "#mision",
-    activeColor: "#00E5FF99",
+    activeColor: "#00897B",
   },
   {
     label: "Work",
     icon: "IoFolderSharp",
     href: "#work",
-    activeColor: "#2979FF99",
+    activeColor: "#2C2F33",
   },
   {
     label: "Collaboration",
     icon: "FaHandshakeSimple",
     href: "#colaboration",
-    activeColor: "#00FF9C99",
+    activeColor: "#00897B",
   },
 
   {
     label: "Contact",
     icon: "IoMailSharp",
     href: "#contact",
-    activeColor: "#FF3D8199",
+    activeColor: "#2C2F33",
   },
 
   {
     label: "Stack",
     icon: "FaTools",
     href: "#stack",
-    activeColor: "#8B5CF699",
+    activeColor: "#00897B",
   },
 
   {
-    label: "Insights",
-    icon: "IoScanSharp",
-    href: "#insights",
-    activeColor: "#FF910099",
+    label: "Home",
+    icon: "IoHomeSharp",
+    href: "#home",
+    activeColor: "#2C2F33",
   },
 ];
 
