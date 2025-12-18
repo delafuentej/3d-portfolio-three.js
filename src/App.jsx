@@ -4,17 +4,18 @@ import Experience from "./Experience";
 import { LoadingScreen } from "./components";
 import ToggleButton from "./components/nav/ToggleButton";
 import OverlayNav from "./components/nav/OverlayNav";
+import CursorTrail from "./components/cursor-trail/CursorTrail";
 import useStore from "./store/useStore";
-import { useAudio } from "./hooks/useAudio";
 
 function App() {
-  const isMenuOpen = useStore((state) => state.menu.isOpen);
   const toggleMenu = useStore((state) => state.menu.toggle);
   const loadingFinished = useStore((state) => state.loading.finished);
-  const selectAudio = useAudio("/audio/nav/menu-select.mp3");
+  const isLoading = useStore((state) => !state.loading.finished);
+
   return (
     <>
-      <LoadingScreen />
+      {isLoading && <LoadingScreen />}
+      {isLoading && <CursorTrail />}
 
       <Canvas
         dpr={[1, 2]}

@@ -48,6 +48,19 @@ body,
   /* =========================
      Loading Screen
   ========================== */
+  /* cursor */
+  .cursor-trail {
+    @apply absolute inset-0 overflow-hidden z-[2];
+  }
+  .trail-img {
+    @apply absolute w-[175px] h-[175px] pointer-events-none;
+  }
+  .trail-img .mask-layer {
+    @apply absolute inset-0 bg-black will-change-[clip-path];
+  }
+  .trail-img .mask-layer .image-layer {
+    @apply absolute inset-0 bg-cover bg-center;
+  }
 
   .loader-container {
     @apply flex h-screen w-screen items-center justify-center
