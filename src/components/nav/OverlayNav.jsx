@@ -3,7 +3,6 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import CircularMenu from "./CircularMenu";
 import useStore from "../../store/useStore";
-import { ImSwitch } from "react-icons/im";
 import ToggleButton from "./ToggleButton";
 import { useAudio } from "../../hooks/useAudio";
 

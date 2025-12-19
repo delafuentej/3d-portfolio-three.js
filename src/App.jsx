@@ -1,7 +1,8 @@
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import Experience from "./Experience";
-import { LoadingScreen } from "./components";
+//import { LoadingScreen } from "./components";
+import LoadingScreen from "./components/loader/LoadingScreen";
 import ToggleButton from "./components/nav/ToggleButton";
 import OverlayNav from "./components/nav/OverlayNav";
 import CursorTrail from "./components/cursor-trail/CursorTrail";
@@ -15,6 +16,7 @@ function App() {
   return (
     <>
       {isLoading && <LoadingScreen />}
+      {!loadingFinished && null}
       {isLoading && <CursorTrail />}
 
       <Canvas
