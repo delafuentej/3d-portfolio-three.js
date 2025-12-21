@@ -1,3 +1,4 @@
+// Joystick.js
 import React, { useRef, forwardRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -8,43 +9,39 @@ import {
   IoChevronBackSharp,
   IoChevronForwardSharp,
 } from "react-icons/io5";
-
-import { useResponsiveConfig } from "../../hooks/useResponsiveConfig";
 import { playSound } from "../../audio/audioEngine";
+import { useResponsiveConfig } from "../../hooks/useResponsiveConfig";
 
 export const Joystick = forwardRef(
-  ({ onSegmentChange, menuItems, isOpen }, ref) => {
+  ({ onSegmentMove, onSegmentRelease, menuItems, isOpen }, ref) => {
     const config = useResponsiveConfig();
     const innerRef = useRef(null);
-    const joystickRef = innerRef || ref;
+    const joystickRef = ref || innerRef;
+
     const isDragging = useRef(false);
     const current = useRef({ x: 0, y: 0, targetX: 0, targetY: 0 });
     const activeSegmentRef = useRef(null);
 
+    // animación continua
     useGSAP(
       () => {
         const joystick = joystickRef.current;
         if (!joystick) return;
 
-        // Animación continua (requestAnimationFrame style)
         const animate = () => {
           const { targetX, targetY } = current.current;
           current.current.x += (targetX - current.current.x) * 0.15;
           current.current.y += (targetY - current.current.y) * 0.15;
 
-          gsap.set(joystick, {
-            x: current.current.x,
-            y: current.current.y,
-          });
+          gsap.set(joystick, { x: current.current.x, y: current.current.y });
 
-          // Detección de segmento activo
           if (
             isDragging.current &&
             Math.sqrt(current.current.x ** 2 + current.current.y ** 2) > 20
           ) {
             const angle =
-              Math.atan2(current.current.y, current.current.x) *
-              (180 / Math.PI);
+              (Math.atan2(current.current.y, current.current.x) * 180) /
+              Math.PI;
             const segmentIndex =
               Math.floor(
                 ((angle + 90 + 360) % 360) / (360 / menuItems.length)
@@ -52,19 +49,13 @@ export const Joystick = forwardRef(
 
             if (activeSegmentRef.current !== segmentIndex) {
               activeSegmentRef.current = segmentIndex;
-
-              if (typeof onSegmentChange === "function") {
-                onSegmentChange(segmentIndex);
-              }
-
-              if (isOpen) {
-                playSound("select");
-              }
+              onSegmentMove?.(segmentIndex); // feedback visual
+              if (isOpen) playSound("select");
             }
           } else {
             if (activeSegmentRef.current !== null) {
               activeSegmentRef.current = null;
-              onSegmentChange?.(null);
+              onSegmentMove?.(null);
             }
           }
 
@@ -73,7 +64,7 @@ export const Joystick = forwardRef(
 
         animate();
 
-        // Eventos drag
+        // drag
         const startDrag = (e) => {
           isDragging.current = true;
           const rect = joystick.getBoundingClientRect();
@@ -106,6 +97,10 @@ export const Joystick = forwardRef(
             isDragging.current = false;
             current.current.targetX = 0;
             current.current.targetY = 0;
+            // 🔹 Ejecuta la acción real al soltar
+            if (activeSegmentRef.current !== null) {
+              onSegmentRelease?.(activeSegmentRef.current);
+            }
             document.removeEventListener("mousemove", drag);
             document.removeEventListener("mouseup", endDrag);
             document.removeEventListener("touchmove", drag);
@@ -122,23 +117,22 @@ export const Joystick = forwardRef(
         joystick.addEventListener("mousedown", startDrag);
         joystick.addEventListener("touchstart", startDrag);
 
-        // Limpieza automática gracias a useGSAP
         return () => {
           joystick.removeEventListener("mousedown", startDrag);
           joystick.removeEventListener("touchstart", startDrag);
         };
       },
-      { dependencies: [menuItems, isOpen, onSegmentChange], scope: joystickRef }
+      {
+        dependencies: [menuItems, isOpen, onSegmentMove, onSegmentRelease],
+        scope: joystickRef,
+      }
     );
+
     return (
       <div
         className="joystick"
         ref={joystickRef}
-        style={{
-          display: isOpen ? "flex" : "none",
-          // width: config.menuSize * 0.25,
-          // height: config.menuSize * 0.25,
-        }}
+        style={{ display: isOpen ? "flex" : "none" }}
       >
         <IoGridSharp className="center-icon center-main" />
         <IoChevronUpSharp className="center-icon center-up" />

@@ -1,22 +1,36 @@
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import Experience from "./Experience";
-//import { LoadingScreen } from "./components";
 import LoadingScreen from "./components/loader/LoadingScreen";
 import ToggleButton from "./components/nav/ToggleButton";
 import OverlayNav from "./components/nav/OverlayNav";
 import CursorTrail from "./components/cursor-trail/CursorTrail";
+
 import useStore from "./store/useStore";
+import CameraCinematicDirector from "./components/CameraCinematicDirector";
+
+import useCameraRouter from "./hooks/useCameraRouter";
+import useAutoCloseMenu from "./hooks/useAutoCloseMenu";
+import useBlockScrollDuringTransition from "./hooks/useBlockScrollDuringTransition";
 
 function App() {
+  // Hooks de sincronización
+  useCameraRouter(); // sync hash ↔ store
+  useAutoCloseMenu(); // cierra menú al cambiar sección
+  useBlockScrollDuringTransition(); // bloquea scroll en animaciones
+
   const toggleMenu = useStore((state) => state.menu.toggle);
   const loadingFinished = useStore((state) => state.loading.finished);
-  const isLoading = useStore((state) => !state.loading.finished);
+  const isLoading = !loadingFinished;
+
+  // 🔹 Obtener la sección y posición inicial de la cámara desde el store
+  const currentSection = useStore.getState().camera.current;
+  const views = useStore.getState().camera.views;
+  const initialCameraPosition = views[currentSection]?.position ?? [4, 2, 6];
 
   return (
     <>
       {isLoading && <LoadingScreen />}
-      {!loadingFinished && null}
       {isLoading && <CursorTrail />}
 
       <Canvas
@@ -26,18 +40,20 @@ function App() {
           fov: 45,
           near: 0.1,
           far: 200,
-          position: [4, 2, 6],
+          position: initialCameraPosition,
         }}
       >
         <Suspense fallback={null}>
+          {/* Director cinematográfico: mueve la cámara según currentSection */}
+          <CameraCinematicDirector />
+          {/* Contenido 3D */}
           <Experience />
         </Suspense>
       </Canvas>
-      <>
-        {loadingFinished && <ToggleButton onClick={toggleMenu} />}
 
-        <OverlayNav />
-      </>
+      {/* UI */}
+      {loadingFinished && <ToggleButton onClick={toggleMenu} />}
+      <OverlayNav />
     </>
   );
 }

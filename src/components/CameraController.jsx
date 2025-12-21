@@ -1,37 +1,93 @@
-import { useThree, useFrame } from "@react-three/fiber";
-import { useSpring } from "@react-spring/three";
-import { useStore } from "../store";
+// CameraController.jsx
+import { useLayoutEffect, useRef } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "gsap";
+import useStore from "../store/useStore";
+import { useThree } from "@react-three/fiber";
 
-export default function CameraController() {
-  const { camera } = useThree();
-  const currentView = useStore((state) => state.currentView);
-  const isExpanded = useStore((state) => state.isExpanded);
-  const cameraPositions = useStore((state) => state.cameraPositions);
+gsap.registerPlugin(ScrollTrigger);
 
-  // posición objetivo según vista
-  let target = cameraPositions[currentView];
+const CameraController = () => {
+  const camera = useThree((state) => state.camera);
+  const store = useStore();
+  const currentSectionRef = useRef(store.camera.current); // evita loops infinitos
 
-  console.log("target", target);
+  useLayoutEffect(() => {
+    const triggers = [];
 
-  // si estamos en "projects" y expandido, acercamos la cámara
-  if (currentView === "projects" && isExpanded) {
-    target = { x: 10, y: 5, z: 2 }; // ajusta según tu preferencia
-  }
+    store.camera.sections.forEach((sectionId) => {
+      const el = document.getElementById(sectionId);
+      if (!el) return; // evita errores si el DOM no existe
+      const targetPos = store.camera.positions[sectionId];
+      if (!targetPos) return;
 
-  // spring animado
-  const spring = useSpring({
-    to: { x: target.x, y: target.y, z: target.z },
-    config: { mass: 1, tension: 120, friction: 30 },
-  });
+      const trigger = ScrollTrigger.create({
+        trigger: el,
+        start: "top center",
+        end: "bottom center",
+        onEnter: () => {
+          if (currentSectionRef.current !== sectionId) {
+            store.camera.setCurrentSection(sectionId);
+            currentSectionRef.current = sectionId;
+          }
+        },
+        onEnterBack: () => {
+          if (currentSectionRef.current !== sectionId) {
+            store.camera.setCurrentSection(sectionId);
+            currentSectionRef.current = sectionId;
+          }
+        },
+        onUpdate: (self) => {
+          const progress = self.progress;
+          camera.position.x += (targetPos.x - camera.position.x) * progress;
+          camera.position.y += (targetPos.y - camera.position.y) * progress;
+          camera.position.z += (targetPos.z - camera.position.z) * progress;
+          camera.lookAt(
+            store.camera.target.x,
+            store.camera.target.y,
+            store.camera.target.z
+          );
+        },
+      });
 
-  // actualizar la cámara cada frame
-  useFrame(() => {
-    const { x, y, z } = spring;
-    camera.position.x += (x.get() - camera.position.x) * 0.1;
-    camera.position.y += (y.get() - camera.position.y) * 0.1;
-    camera.position.z += (z.get() - camera.position.z) * 0.1;
-    camera.lookAt(0, 1, 0);
-  });
+      triggers.push(trigger);
+    });
 
-  return null;
-}
+    // Limpieza al desmontar
+    return () => {
+      triggers.forEach((t) => t.kill());
+    };
+  }, [camera, store]);
+
+  // Función pública para mover cámara manualmente (click o joystick)
+  const moveToSection = (sectionId) => {
+    const targetPos = store.camera.positions[sectionId];
+    if (!targetPos) return;
+    if (currentSectionRef.current === sectionId) return;
+
+    currentSectionRef.current = sectionId;
+    store.camera.setCurrentSection(sectionId);
+
+    // Movimiento suave con GSAP
+    gsap.to(camera.position, {
+      x: targetPos.x,
+      y: targetPos.y,
+      z: targetPos.z,
+      duration: 1,
+      ease: "power2.inOut",
+      onUpdate: () =>
+        camera.lookAt(
+          store.camera.target.x,
+          store.camera.target.y,
+          store.camera.target.z
+        ),
+    });
+  };
+
+  // Exponer la función globalmente si quieres conectar joystick/segmentos
+  window.moveCameraToSection = moveToSection;
+
+  return null; // solo controla la cámara, no renderiza nada
+};
+
+export default CameraController;

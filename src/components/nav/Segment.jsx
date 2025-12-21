@@ -1,7 +1,8 @@
+// Segment.js
 import { forwardRef } from "react";
 
 const Segment = forwardRef(function Segment(
-  { item, index, total, config, isActive },
+  { item, index, total, config },
   ref
 ) {
   const { menuSize, center, innerRadius, outerRadius, contentRadius } = config;
@@ -12,6 +13,7 @@ const Segment = forwardRef(function Segment(
   const startAngle = baseStartAngle + 0.19;
   const endAngle = baseStartAngle + anglePerSegment - 0.19;
 
+  // Coordenadas para el clipPath
   const innerStartX =
     center + innerRadius * Math.cos(((startAngle - 90) * Math.PI) / 180);
   const innerStartY =
@@ -56,8 +58,12 @@ const Segment = forwardRef(function Segment(
         height: `${menuSize}px`,
         position: "absolute",
       }}
-      onMouseEnter={() => item.onHover?.(index)}
+      onMouseEnter={() => item.onHover?.(index)} // solo hover visual
       onMouseLeave={() => item.onHover?.(null)}
+      onClick={(e) => {
+        e.preventDefault();
+        item.onClick?.(index); // selecciona sección real
+      }}
     >
       <div
         className="segment-content"
