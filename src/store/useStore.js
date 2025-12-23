@@ -80,6 +80,7 @@ const useStore = create((set, get) => ({
      CAMERA
   ===================== */
   camera: {
+    lastSource: null, //who triggered the navigation: "menu" | "joystick" | "scroll" | "hash"
     // 🔹 Orden de las secciones
     sections: ["home", "mision", "stack", "work", "collaboration", "contact"],
     current: "home",
@@ -127,6 +128,21 @@ const useStore = create((set, get) => ({
     target: { x: 0, y: 1, z: 0 },
 
     // 🔹 Cambiar sección
+    goTo: (section, source = "ui") => {
+      const { current, isAnimating, sections } = get().camera;
+
+      if (isAnimating) return;
+      if (!sections.includes(section)) return;
+      if (section === current) return;
+
+      set((state) => ({
+        camera: {
+          ...state.camera,
+          current: section,
+          lastSource: source,
+        },
+      }));
+    },
     setCurrentSection: (section) =>
       set((state) => ({
         camera: { ...state.camera, current: section },
@@ -134,22 +150,20 @@ const useStore = create((set, get) => ({
 
     // 🔹 Avanzar a la siguiente sección
     next: () => {
-      const { sections, current } = get().camera;
-      const currentIndex = sections.indexOf(current);
-      const nextIndex = Math.min(currentIndex + 1, sections.length - 1);
-      set((state) => ({
-        camera: { ...state.camera, current: sections[nextIndex] },
-      }));
+      const { sections, current, goTo } = get().camera;
+      const index = sections.indexOf(current);
+      if (index < sections.length - 1) {
+        goTo(sections[index + 1], "scroll");
+      }
     },
 
     // 🔹 Volver a la sección anterior
     prev: () => {
-      const { sections, current } = get().camera;
-      const currentIndex = sections.indexOf(current);
-      const prevIndex = Math.max(currentIndex - 1, 0);
-      set((state) => ({
-        camera: { ...state.camera, current: sections[prevIndex] },
-      }));
+      const { sections, current, goTo } = get().camera;
+      const index = sections.indexOf(current);
+      if (index > 0) {
+        goTo(sections[index - 1], "scroll");
+      }
     },
 
     // 🔹 Obtener posición actual de la cámara

@@ -14,7 +14,7 @@ export const menuItems = [
   {
     label: "Collaboration",
     icon: "FaHandshakeSimple",
-    section: "colaboration",
+    section: "collaboration",
     activeColor: "#00897B",
   },
 

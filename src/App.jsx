@@ -12,9 +12,11 @@ import CameraCinematicDirector from "./components/CameraCinematicDirector";
 import useCameraRouter from "./hooks/useCameraRouter";
 import useAutoCloseMenu from "./hooks/useAutoCloseMenu";
 import useBlockScrollDuringTransition from "./hooks/useBlockScrollDuringTransition";
+import useScrollNavigation from "./hooks/useScrollNavigation";
 
 function App() {
   // Hooks de sincronización
+  useScrollNavigation();
   useCameraRouter(); // sync hash ↔ store
   useAutoCloseMenu(); // cierra menú al cambiar sección
   useBlockScrollDuringTransition(); // bloquea scroll en animaciones
@@ -25,8 +27,11 @@ function App() {
 
   // 🔹 Obtener la sección y posición inicial de la cámara desde el store
   const currentSection = useStore.getState().camera.current;
+  console.log("currentSection", currentSection);
   const views = useStore.getState().camera.views;
+  console.log("views", views);
   const initialCameraPosition = views[currentSection]?.position ?? [4, 2, 6];
+  console.log("initialCameraPosition", initialCameraPosition);
 
   return (
     <>
@@ -47,7 +52,7 @@ function App() {
           {/* Director cinematográfico: mueve la cámara según currentSection */}
           <CameraCinematicDirector />
           {/* Contenido 3D */}
-          <Experience />
+          <Experience section={currentSection} />
         </Suspense>
       </Canvas>
 

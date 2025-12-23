@@ -1,42 +1,35 @@
 // import { Suspense } from "reimport { OrbitControls, Environment } from "@react-three/drei";
-import { OrbitControls, Environment } from "@react-three/drei";
-import { Home } from "./sections";
+import { Environment, OrbitControls } from "@react-three/drei";
+import { Home, Stack, Mision, Contact, Collaboration, Work } from "./sections";
+import { useResponsiveValues } from "./utils/responsiveValues";
 
 export default function Experience({ section, ready }) {
+  console.log("section", section);
+  const { controls } = useResponsiveValues();
   return (
     <>
       <color args={["#2C2F33"]} attach="background" />
 
       <OrbitControls
         enableDamping
-        enableZoom={false}
+        enableZoom={controls.enableZoom}
+        enableRotate
         enablePan={false}
-        minPolarAngle={Math.PI / 2}
-        maxPolarAngle={Math.PI / 2}
+        minDistance={2}
+        maxDistance={controls.maxDistance}
+        minPolarAngle={Math.PI / 2} // ← Mantener la cámara nivelada
+        maxPolarAngle={Math.PI / 2} // ← Impide rotar en X
       />
 
       <Environment preset="studio" />
 
       <group>
-        {/* HOME */}
-        <group>
-          <Home />
-        </group>
-
-        {/* SKILLS */}
-        {/* <group visible={section === "skills"}> */}
-        {/* <Skills /> */}
-        {/* </group> */}
-
-        {/* PROJECTS */}
-        {/* <group visible={section === "projects"}> */}
-        {/* <Projects /> */}
-        {/* </group> */}
-
-        {/* CONTACT */}
-        {/* <group visible={section === "contact"}> */}
-        {/* <Contact /> */}
-        {/* </group> */}
+        {section === "home" && <Home ready={ready} />}
+        {section === "mision" && <Mision ready={ready} />}
+        {section === "stack" && <Stack ready={ready} />}
+        {section === "work" && <Work ready={ready} />}
+        {section === "collaboration" && <Collaboration ready={ready} />}
+        {section === "contact" && <Contact ready={ready} />}
       </group>
     </>
   );

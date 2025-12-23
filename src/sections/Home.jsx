@@ -17,7 +17,7 @@ import {
 } from "../components";
 
 export default function Home({ ready }) {
-  const { controls, hologram, light, titleText } = useResponsiveValues();
+  const { hologram, light, titleText } = useResponsiveValues();
 
   const macbookModel = useGLTF(
     "https://threejs-journey.com/resources/models/macbook_model.gltf"
@@ -34,17 +34,6 @@ export default function Home({ ready }) {
 
   return (
     <>
-      <OrbitControls
-        enableDamping
-        enableZoom={controls.enableZoom}
-        enableRotate
-        enablePan={false}
-        minDistance={2}
-        maxDistance={controls.maxDistance}
-        minPolarAngle={Math.PI / 2} // ← Mantener la cámara nivelada
-        maxPolarAngle={Math.PI / 2} // ← Impide rotar en X
-      />
-
       <Suspense fallback={null}>
         <PresentationControls
           global

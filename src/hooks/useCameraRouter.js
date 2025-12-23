@@ -49,7 +49,7 @@ export default function useCameraRouter() {
       // Validar que la vista existe
       if (camera.views && camera.views[hash]) {
         if (camera.current !== hash) {
-          camera.setCurrentSection(hash);
+          camera.goTo(hash, "hash");
         }
       }
     };

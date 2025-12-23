@@ -64,19 +64,19 @@ const CircularMenu = () => {
   };
 
   // 🔹 Selección real: click o joystick release
-  const handleSegmentSelect = (selectIndex) => {
+  const handleSegmentSelect = (selectIndex, source = "menu") => {
     if (selectIndex === null) return;
 
-    // 1️⃣ Guardar el segmento como activo
+    // Guardar segmento activo
     setActiveSegment(selectIndex);
 
     const section = menuItems[selectIndex]?.section;
     if (!section) return;
 
-    // 2️⃣ Delay para animación cinematográfica
+    // Animación cinematográfica
     gsap.delayedCall(0.5, () => {
-      useStore.getState().camera.setCurrentSection(section);
-      useStore.getState().menu.close();
+      useStore.getState().camera.goTo(section, source);
+      if (source === "menu") useStore.getState().menu.close();
     });
   };
 
@@ -140,7 +140,7 @@ const CircularMenu = () => {
         menuItems={menuItems}
         isOpen={isMenuOpen}
         onSegmentMove={handleSegmentHover} // solo feedback visual
-        onSegmentRelease={handleSegmentSelect} // acción real al soltar
+        onSegmentRelease={(index) => handleSegmentSelect(index, "joystick")} // acción real al soltar
       />
 
       {/* segmentos */}
@@ -161,7 +161,7 @@ const CircularMenu = () => {
                 ...item,
                 icon: Icon,
                 onHover: handleSegmentHover,
-                onClick: () => handleSegmentSelect(i), // click también selecciona
+                onClick: () => handleSegmentSelect(i, "menu"), // click también selecciona
               }}
               index={i}
               total={menuItems.length}
