@@ -5,7 +5,7 @@ import { useModels } from "../hooks/useModels";
 const UnderConstructionSection = ({
   position = [0, 0, 0],
   rotation,
-  scale = [2, 2, 2],
+  scale = [2.5, 2.5, 2.5],
 }) => {
   const { underConstructionModel } = useModels();
 

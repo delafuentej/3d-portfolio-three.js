@@ -6,8 +6,9 @@ import { Joystick } from "./Joystick";
 import * as IoIcons from "react-icons/io5";
 import * as FaIcons from "react-icons/fa";
 import * as Fa6Icons from "react-icons/fa6";
-import { menuItems } from "../../constants";
+import { menuItems as baseMenuItems } from "../../constants";
 import useStore from "../../store/useStore";
+import { useI18nStore } from "../../store/useI18nStore";
 import { useResponsiveConfig } from "../../hooks/useResponsiveConfig";
 
 const Icons = {
@@ -19,6 +20,12 @@ const Icons = {
 gsap.defaults({ overwrite: "auto" });
 
 const CircularMenu = () => {
+  const tr = useI18nStore((s) => s.tr);
+
+  const menuItems = baseMenuItems.map((item) => ({
+    ...item,
+    label: tr(`menu.${item.section}`), // aquí se obtiene la traducción
+  }));
   const containerRef = useRef(null);
   const isMenuOpen = useStore((s) => s.menu.isOpen);
   const currentSection = useStore((s) => s.camera.current);

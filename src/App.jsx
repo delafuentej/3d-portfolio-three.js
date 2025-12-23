@@ -13,8 +13,20 @@ import useCameraRouter from "./hooks/useCameraRouter";
 import useAutoCloseMenu from "./hooks/useAutoCloseMenu";
 import useBlockScrollDuringTransition from "./hooks/useBlockScrollDuringTransition";
 import useScrollNavigation from "./hooks/useScrollNavigation";
+import { useI18nStore } from "./store/useI18nStore";
 
 function App() {
+  // 🔹 Leer idioma desde la URL solo al carga
+  useEffect(() => {
+    const hash = window.location.hash; // "#work?lang=de"
+    const [sectionPart, queryPart] = hash.split("?"); // ["#work", "lang=de"]
+
+    if (queryPart) {
+      const params = new URLSearchParams(queryPart);
+      const lang = params.get("lang");
+      if (lang) useI18nStore.getState().setLang(lang);
+    }
+  }, []);
   // Hooks de sincronización
   useScrollNavigation();
   useCameraRouter(); // sync hash ↔ store
