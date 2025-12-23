@@ -1,7 +1,5 @@
-import React from "react";
+import UnderConstructionSection from "./UnderConstructionSection";
 
-const Mision = () => {
-  return <group>Mision</group>;
-};
+const Mision = () => <UnderConstructionSection position={[0, 0, 0]} />;
 
 export default Mision;

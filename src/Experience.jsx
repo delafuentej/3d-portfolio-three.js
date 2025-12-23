@@ -2,9 +2,10 @@
 import { Environment, OrbitControls } from "@react-three/drei";
 import { Home, Stack, Mision, Contact, Collaboration, Work } from "./sections";
 import { useResponsiveValues } from "./utils/responsiveValues";
+import useStore from "./store/useStore";
 
-export default function Experience({ section, ready }) {
-  console.log("section", section);
+export default function Experience({ ready }) {
+  const section = useStore((state) => state.camera.current);
   const { controls } = useResponsiveValues();
   return (
     <>

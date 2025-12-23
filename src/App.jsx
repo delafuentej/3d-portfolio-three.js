@@ -52,7 +52,7 @@ function App() {
           {/* Director cinematográfico: mueve la cámara según currentSection */}
           <CameraCinematicDirector />
           {/* Contenido 3D */}
-          <Experience section={currentSection} />
+          <Experience />
         </Suspense>
       </Canvas>
 

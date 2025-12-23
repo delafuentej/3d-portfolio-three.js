@@ -1,7 +1,4 @@
-import React from "react";
-
-const Contact = () => {
-  return <group>Contact</group>;
-};
+import UnderConstructionSection from "./UnderConstructionSection";
+const Contact = () => <UnderConstructionSection position={[0, 0, 0]} />;
 
 export default Contact;
