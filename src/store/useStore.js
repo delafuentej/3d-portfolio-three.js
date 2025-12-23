@@ -90,35 +90,36 @@ const useStore = create((set, get) => ({
         position: { x: 4, y: 2, z: 6 },
         target: { x: 0, y: 1, z: 0 },
         transition: "soft", // introducción elegante
+        lockScroll: true,
       },
 
       mision: {
-        position: { x: -100, y: 5, z: -50 },
-        target: { x: -102, y: 2, z: -60 },
+        position: { x: 0, y: 2, z: 20 },
+        target: { x: 0, y: 1, z: 20 },
         transition: "arc", // viaje narrativo
       },
 
       stack: {
-        position: { x: 10, y: 4, z: 14 },
-        target: { x: 2, y: 1.5, z: 0 },
+        position: { x: 0, y: 2, z: 40 },
+        target: { x: 0, y: 1, z: 40 },
         transition: "orbit", // mostrar tecnología
       },
 
       work: {
-        position: { x: 0, y: 3, z: 18 },
-        target: { x: 0, y: 1, z: 4 },
+        position: { x: 0, y: 2, z: 60 },
+        target: { x: 0, y: 1, z: 60 },
         transition: "push", // foco en proyectos
       },
 
       collaboration: {
-        position: { x: -5, y: 3, z: 22 },
-        target: { x: -2, y: 1, z: 6 },
+        position: { x: 0, y: 2, z: 80 },
+        target: { x: 0, y: 1, z: 80 },
         transition: "slide", // transición lateral humana
       },
 
       contact: {
-        position: { x: 0, y: 8, z: 56 },
-        target: { x: 0, y: 3, z: 40 },
+        position: { x: 0, y: 2, z: 100 },
+        target: { x: 0, y: 1, z: 100 },
         transition: "rise", // cierre / call to action
       },
     },
