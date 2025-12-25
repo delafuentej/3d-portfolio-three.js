@@ -13,6 +13,7 @@ export default {
     title: "3D Creative Developer",
   },
 
+  // mision parte who (i am), what (i do), how (i work)
   mission: {
     title: "I build interactive, 3D-powered web experiences.",
     subtitle:
@@ -26,10 +27,10 @@ export default {
     title: "Building great things, together.",
     subtitle:
       "I thrive in collaborative environments, blending creativity with technology.",
-    teamwork: `I enjoy working alongside designers, developers, and artists to craft engaging, interactive web experiences. 
-      By combining different perspectives, we create projects that are not only functional but also visually striking.`,
-    approach: `I follow agile principles, code reviews, and iterative design processes to ensure smooth collaboration and high-quality results. 
-      Communication and transparency are key to achieving ambitious goals as a team.`,
+    teamwork: `I enjoy working closely with designers, developers, and artists to build engaging, interactive web experiences. 
+    I value diverse perspectives and believe the best results come from strong collaboration and shared ownership of the product.`,
+    approach: `I’m comfortable working in agile teams, participating in code reviews, and iterating quickly on ideas.
+      Communic    I prioritize clear communication, transparency, and reliability to help teams move fast while maintaining high quality.`,
   },
 
   contact: {
@@ -48,6 +49,16 @@ export default {
       and interactive product configurators to visually striking landing pages with smooth animations.`,
     technologies: `Key technologies include React.js, Next.js, Node.js, WebGL, Three.js, React Three Fiber, GSAP, TypeScript, 
       Express.js, Prisma, and WebSockets. I also leverage GLSL for shader programming and advanced 3D effects.`,
+  },
+  stack: {
+    title:
+      "The tools behind my interactive experiences. My Tech Stack: Performance · Creativity · Scalability | A modern stack for immersive web experiences: React · WebGL · Three.js · GSAP · Node",
+    subtitle:
+      "A modern, performance-driven stack focused on creativity and scalability.",
+    description: `I work with a carefully selected tech stack that allows me to build fast, scalable, and immersive web experiences. 
+      My focus is on modern frontend frameworks combined with powerful 3D and animation tools.`,
+    technologies: `React.js, Next.js, React Native, Node.js, WebGL, Three.js, React Three Fiber, GSAP, TypeScript, 
+      Express.js, Prisma, WebSockets, and GLSL for advanced shader and 3D effects.`,
   },
 
   buttons: {

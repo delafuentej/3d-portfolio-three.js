@@ -23,14 +23,15 @@ export default {
       Ich bin offen für Möglichkeiten, die die interaktive Webentwicklung herausfordern und kreative Grenzen erweitern.`,
   },
   collaboration: {
-    title: "Großartiges gemeinsam schaffen.",
+    title: "Große Dinge gemeinsam erschaffen.",
     subtitle:
-      "Ich blühe in kollaborativen Umgebungen auf, indem ich Kreativität mit Technologie kombiniere.",
-    teamwork: `Ich arbeite gerne mit Designern, Entwicklern und Künstlern zusammen, um interaktive und ansprechende Web-Erlebnisse zu schaffen. 
-      Durch die Kombination verschiedener Perspektiven entstehen Projekte, die funktional und visuell beeindruckend sind.`,
-    approach: `Ich folge agilen Prinzipien, Code-Reviews und iterativen Designprozessen, um eine reibungslose Zusammenarbeit und qualitativ hochwertige Ergebnisse sicherzustellen. 
-      Kommunikation und Transparenz sind entscheidend, um ehrgeizige Ziele im Team zu erreichen.`,
+      "Ich arbeite gerne in kollaborativen Umgebungen, in denen Kreativität und Technologie zusammenkommen.",
+    teamwork: `Ich arbeite gerne eng mit Designern, Entwicklern und Künstlern zusammen, um ansprechende und interaktive Web-Erlebnisse zu schaffen.
+    Ich schätze unterschiedliche Perspektiven und bin überzeugt, dass die besten Ergebnisse durch starke Zusammenarbeit und gemeinsame Verantwortung für das Produkt entstehen.`,
+    approach: `Ich fühle mich in agilen Teams wohl, nehme aktiv an Code-Reviews teil und iteriere Ideen schnell.
+    Klare Kommunikation, Transparenz und Zuverlässigkeit stehen für mich im Mittelpunkt, um Teams dabei zu helfen, effizient zu arbeiten und gleichzeitig eine hohe Qualität zu gewährleisten.`,
   },
+
   contact: {
     title: "Lass uns gemeinsam etwas Großartiges schaffen.",
     subtitle: "Ich bin immer offen für neue Möglichkeiten und Kooperationen.",
@@ -48,6 +49,16 @@ export default {
       Echtzeit-3D-Umgebungen und interaktiven Produktkonfiguratoren bis hin zu visuell beeindruckenden Landing Pages mit flüssigen Animationen.`,
     technologies: `Wichtige Technologien: React.js, Next.js, Node.js, WebGL, Three.js, React Three Fiber, GSAP, TypeScript, 
       Express.js, Prisma und WebSockets. Ich nutze auch GLSL für Shader-Programmierung und fortgeschrittene 3D-Effekte.`,
+  },
+  stack: {
+    title: "Die Technologien hinter meinen interaktiven Erlebnissen.",
+    subtitle:
+      "Ein moderner Stack mit Fokus auf Performance, Kreativität und Skalierbarkeit.",
+    description: `Ich arbeite mit einem sorgfältig ausgewählten Tech-Stack, der es mir ermöglicht, schnelle, skalierbare 
+      und immersive Web-Erlebnisse zu entwickeln. Mein Fokus liegt auf modernen Frontend-Frameworks 
+      kombiniert mit leistungsstarken 3D- und Animationstools.`,
+    technologies: `React.js, Next.js, React Native, Node.js, WebGL, Three.js, React Three Fiber, GSAP, TypeScript, 
+      Express.js, Prisma, WebSockets und GLSL für fortgeschrittene Shader- und 3D-Effekte.`,
   },
 
   buttons: {

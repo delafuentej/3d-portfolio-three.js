@@ -40,6 +40,27 @@ const useStore = create((set, get) => ({
         loading: { ...state.loading, visible: false },
       })),
   },
+  /* =====================
+     LANGUAGE UI
+  ===================== */
+  selectLanguage: {
+    isOpen: false,
+    toggle: () =>
+      set((state) => ({
+        selectLanguage: {
+          ...state.selectLanguage,
+          isOpen: !state.selectLanguage.isOpen, // alterna entre true y false
+        },
+      })),
+    open: () =>
+      set((state) => ({
+        selectLanguage: { ...state.selectLanguage, isOpen: true },
+      })),
+    close: () =>
+      set((state) => ({
+        selectLanguage: { ...state.selectLanguage, isOpen: false },
+      })),
+  },
 
   /* =====================
      VIEW

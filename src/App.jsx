@@ -5,7 +5,7 @@ import LoadingScreen from "./components/loader/LoadingScreen";
 import ToggleButton from "./components/nav/ToggleButton";
 import OverlayNav from "./components/nav/OverlayNav";
 import CursorTrail from "./components/cursor-trail/CursorTrail";
-
+import LanguageSelect from "./components/language/LanguageSelect";
 import useStore from "./store/useStore";
 import CameraCinematicDirector from "./components/CameraCinematicDirector";
 
@@ -49,6 +49,8 @@ function App() {
     <>
       {isLoading && <LoadingScreen />}
       {isLoading && <CursorTrail />}
+
+      {!isLoading && <LanguageSelect />}
 
       <Canvas
         dpr={[1, 2]}

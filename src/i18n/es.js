@@ -23,15 +23,17 @@ export default {
     passion: `Me apasiona combinar arte y tecnología para crear experiencias atractivas. Estoy abierto a oportunidades que desafíen 
       el desarrollo web interactivo y lleven los límites de la creatividad más allá.`,
   },
+
   collaboration: {
     title: "Construyendo grandes cosas, juntos.",
     subtitle:
-      "Me desarrollo mejor en entornos colaborativos, combinando creatividad y tecnología.",
-    teamwork: `Disfruto trabajar junto a diseñadores, desarrolladores y artistas para crear experiencias web interactivas y atractivas. 
-      Al combinar diferentes perspectivas, desarrollamos proyectos que son funcionales y visualmente impactantes.`,
-    approach: `Sigo principios ágiles, revisiones de código y procesos de diseño iterativos para garantizar una colaboración fluida y resultados de alta calidad. 
-      La comunicación y la transparencia son clave para alcanzar objetivos ambiciosos en equipo.`,
+      "Me desenvuelvo bien en entornos colaborativos, combinando creatividad y tecnología.",
+    teamwork: `Disfruto trabajando estrechamente con diseñadores, desarrolladores y artistas para crear experiencias web interactivas y atractivas.
+    Valoro la diversidad de perspectivas y creo que los mejores resultados surgen de una colaboración sólida y de la responsabilidad compartida sobre el producto.`,
+    approach: `Me siento cómodo trabajando en equipos ágiles, participando en revisiones de código y iterando rápidamente sobre ideas.
+    Priorizo una comunicación clara, la transparencia y la fiabilidad para ayudar a los equipos a avanzar rápido sin perder calidad.`,
   },
+
   contact: {
     title: "Hagamos algo increíble juntos.",
     subtitle: "Siempre estoy abierto a nuevas oportunidades y colaboraciones.",
@@ -49,6 +51,15 @@ export default {
       y configuradores interactivos de productos hasta landing pages impactantes con animaciones suaves.`,
     technologies: `Tecnologías clave: React.js, Next.js, Node.js, WebGL, Three.js, React Three Fiber, GSAP, TypeScript, 
       Express.js, Prisma y WebSockets. También uso GLSL para programación de shaders y efectos 3D avanzados.`,
+  },
+  stack: {
+    title: "Las herramientas detrás de mis experiencias interactivas.",
+    subtitle:
+      "Un stack moderno, enfocado en rendimiento, creatividad y escalabilidad.",
+    description: `Trabajo con un stack tecnológico cuidadosamente seleccionado que me permite crear experiencias web rápidas, 
+      escalables e inmersivas. Mi enfoque combina frameworks frontend modernos con potentes herramientas 3D y de animación.`,
+    technologies: `React.js, Next.js, React Native, Node.js, WebGL, Three.js, React Three Fiber, GSAP, TypeScript, 
+      Express.js, Prisma, WebSockets y GLSL para shaders avanzados y efectos 3D.`,
   },
 
   buttons: {

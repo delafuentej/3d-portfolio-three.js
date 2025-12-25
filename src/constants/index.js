@@ -56,3 +56,9 @@ export function getResponsiveConfig() {
     contentRadius: menuSize * 0.28,
   };
 }
+
+export const LANGUAGES = [
+  { code: "es", label: "ES" },
+  { code: "en", label: "EN" },
+  { code: "de", label: "DE" },
+];

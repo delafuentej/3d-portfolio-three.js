@@ -146,6 +146,46 @@ body,
            xl:text-6xl;
   }
 
+  /* =========================
+    Language Options
+ ========================== */
+  .language-select {
+    @apply fixed top-4 right-4 z-50  bg-[#2C2F33]/60;
+  }
+  .language-trigger {
+    @apply w-full
+  bg-transparent
+   border border-[#00897B]
+   rounded-xl
+   px-4 py-2
+   text-white
+   uppercase
+   tracking-widest
+   text-sm
+   flex items-center justify-center
+   transition-all duration-300
+   hover:border-[#00bfa6f9]
+   hover:bg-[#00897B]
+   focus:outline-none
+   focus:shadow-[0_0_20px_rgba(0,137,123,0.5)];
+  }
+  .language-dropdown {
+    @apply flex
+        flex-col
+        justify-center
+        items-center
+        absolute mt-2 w-full
+        border border-[#00897B]
+        rounded-xl
+        overflow-hidden
+        shadow-[0_0_30px_rgba(0,137,123,0.25)]
+        animate-[fadeIn_0.2s_ease-out];
+  }
+
+  .language-option {
+    @apply w-full flex flex-col text-center bg-[#2C2F33]/60 px-4 py-2 text-white uppercase tracking-widest text-sm cursor-pointer hover:bg-[#00897B]/80 transition-colors;
+  }
+
   /* NAV */
   /* toggle-button*/
   .menu-toggle-btn {
