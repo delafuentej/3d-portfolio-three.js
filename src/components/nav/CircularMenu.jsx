@@ -22,10 +22,13 @@ gsap.defaults({ overwrite: "auto" });
 const CircularMenu = () => {
   const tr = useI18nStore((s) => s.tr);
 
+  console.log("baseMenuItems", baseMenuItems);
+
   const menuItems = baseMenuItems.map((item) => ({
     ...item,
     label: tr(`menu.${item.section}`), // aquí se obtiene la traducción
   }));
+  console.log("menuItems", menuItems);
   const containerRef = useRef(null);
   const isMenuOpen = useStore((s) => s.menu.isOpen);
   const currentSection = useStore((s) => s.camera.current);

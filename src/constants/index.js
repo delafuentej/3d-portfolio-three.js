@@ -1,8 +1,8 @@
 export const menuItems = [
   {
-    label: "Mision",
+    label: "Mission",
     icon: "IoCompassSharp",
-    section: "mision",
+    section: "mission",
     activeColor: "#00897B",
   },
   {
@@ -11,6 +11,7 @@ export const menuItems = [
     section: "work",
     activeColor: "#2C2F33",
   },
+
   {
     label: "Collaboration",
     icon: "FaHandshakeSimple",

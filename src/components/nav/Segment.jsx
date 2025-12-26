@@ -75,6 +75,7 @@ const Segment = forwardRef(function Segment(
         }}
       >
         {item?.icon && <item.icon className="item-icon" />}
+
         <div className="label">{item.label}</div>
       </div>
     </a>

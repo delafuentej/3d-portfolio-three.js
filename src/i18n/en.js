@@ -2,7 +2,7 @@
 export default {
   menu: {
     home: "Home",
-    mision: "Mission",
+    mission: "Mission",
     stack: "Stack",
     work: "Work",
     collaboration: "Collaboration",

@@ -2,7 +2,7 @@
 export default {
   menu: {
     home: "Start",
-    mision: "Mission",
+    mission: "Mission",
     stack: "Tech-Stack",
     work: "Projekte",
     collaboration: "Zusammenarbeit",

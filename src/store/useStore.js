@@ -1,200 +1,255 @@
-// src/store/useStore.import { create } from "zustand";
-import { create } from "zustand";
+// src/store/useStore.import { create } from "zusta
 
-const useStore = create((set, get) => ({
-  /* =====================
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import { audioManager } from "../audio/AudioManager";
+
+const useStore = create(
+  persist(
+    (set, get) => ({
+      /* =====================
      APP
   ===================== */
-  app: {
-    ready: false,
-    setReady: (ready) =>
-      set((state) => ({
-        app: { ...state.app, ready },
-      })),
-  },
+      app: {
+        ready: false,
+        setReady: (ready) =>
+          set((state) => ({
+            app: { ...state.app, ready },
+          })),
+      },
 
-  /* =====================
-     LOADING
+      /* =====================
+      LOADING
+      ===================== */
+      loading: {
+        visible: true,
+        finished: false,
+        showExitAnimation: false,
+
+        startExit: () =>
+          set((state) => ({
+            loading: { ...state.loading, showExitAnimation: true },
+          })),
+
+        finish: () =>
+          set((state) => ({
+            loading: {
+              ...state.loading,
+              visible: false,
+              finished: true,
+            },
+          })),
+
+        hide: () =>
+          set((state) => ({
+            loading: { ...state.loading, visible: false },
+          })),
+      },
+
+      /* =====================
+      SELECT LANGUAGE
+      ===================== */
+      selectLanguage: {
+        isOpen: false,
+        toggle: () =>
+          set((state) => ({
+            selectLanguage: {
+              ...state.selectLanguage,
+              isOpen: !state.selectLanguage.isOpen,
+            },
+          })),
+        open: () =>
+          set((state) => ({
+            selectLanguage: { ...state.selectLanguage, isOpen: true },
+          })),
+        close: () =>
+          set((state) => ({
+            selectLanguage: { ...state.selectLanguage, isOpen: false },
+          })),
+      },
+
+      /* =====================
+     MUSIC ENABLED/MUTE
   ===================== */
-  loading: {
-    visible: true,
-    finished: false,
-    showExitAnimation: false,
+      musicEnabled: true, // En el root, no dentro de un objeto
 
-    startExit: () =>
-      set((state) => ({
-        loading: { ...state.loading, showExitAnimation: true },
-      })),
+      toggleMusic: () => {
+        const state = get();
+        const newValue = !state.musicEnabled;
+        const currentSection = state.camera.current ?? "home";
 
-    finish: () =>
-      set((state) => ({
-        loading: {
-          ...state.loading,
-          visible: false,
-          finished: true,
-        },
-      })),
+        console.log("🎵 Toggling music:", {
+          from: state.musicEnabled,
+          to: newValue,
+          section: currentSection,
+        });
 
-    hide: () =>
-      set((state) => ({
-        loading: { ...state.loading, visible: false },
-      })),
-  },
-  /* =====================
-     LANGUAGE UI
-  ===================== */
-  selectLanguage: {
-    isOpen: false,
-    toggle: () =>
-      set((state) => ({
-        selectLanguage: {
-          ...state.selectLanguage,
-          isOpen: !state.selectLanguage.isOpen, // alterna entre true y false
-        },
-      })),
-    open: () =>
-      set((state) => ({
-        selectLanguage: { ...state.selectLanguage, isOpen: true },
-      })),
-    close: () =>
-      set((state) => ({
-        selectLanguage: { ...state.selectLanguage, isOpen: false },
-      })),
-  },
+        // Actualizar estado
+        set({ musicEnabled: newValue });
 
-  /* =====================
+        // Manejar audio
+        if (newValue) {
+          console.log("▶️ Playing audio");
+          setTimeout(() => audioManager.play(currentSection), 0);
+        } else {
+          console.log("⏸️ Stopping audio");
+          setTimeout(() => audioManager.stop(), 0);
+        }
+      },
+
+      /* =====================
      VIEW
   ===================== */
-  view: {
-    current: "home",
-    setCurrent: (view) =>
-      set((state) => ({
-        view: { ...state.view, current: view },
-      })),
-  },
+      view: {
+        current: "home",
+        setCurrent: (view) =>
+          set((state) => ({
+            view: { ...state.view, current: view },
+          })),
+      },
 
-  /* =====================
+      /* =====================
      MENU
   ===================== */
-  menu: {
-    isOpen: false,
-    toggle: () =>
-      set((state) => ({
-        menu: {
-          ...state.menu,
-          isOpen: !state.menu.isOpen,
-        },
-      })),
+      menu: {
+        isOpen: false,
+        toggle: () =>
+          set((state) => ({
+            menu: {
+              ...state.menu,
+              isOpen: !state.menu.isOpen,
+            },
+          })),
 
-    open: () =>
-      set((state) => ({
-        menu: { ...state.menu, isOpen: true },
-      })),
+        open: () =>
+          set((state) => ({
+            menu: { ...state.menu, isOpen: true },
+          })),
 
-    close: () =>
-      set((state) => ({
-        menu: { ...state.menu, isOpen: false },
-      })),
-  },
+        close: () =>
+          set((state) => ({
+            menu: { ...state.menu, isOpen: false },
+          })),
+      },
 
-  /* =====================
+      /* =====================
      CAMERA
   ===================== */
-  camera: {
-    lastSource: null, //who triggered the navigation: "menu" | "joystick" | "scroll" | "hash"
-    // 🔹 Orden de las secciones
-    sections: ["home", "mision", "stack", "work", "collaboration", "contact"],
-    current: "home",
+      camera: {
+        lastSource: null,
+        sections: [
+          "home",
+          "mission",
+          "stack",
+          "work",
+          "collaboration",
+          "contact",
+        ],
+        current: "home",
 
-    // 🔹 Posiciones de cámara para cada sección
-    views: {
-      home: {
-        position: { x: 4, y: 2, z: 6 },
-        target: { x: 0, y: 1, z: 0 },
-        transition: "soft", // introducción elegante
-        lockScroll: true,
-      },
-
-      mision: {
-        position: { x: 0, y: 2, z: 20 },
-        target: { x: 0, y: 1, z: 20 },
-        transition: "arc", // viaje narrativo
-      },
-
-      stack: {
-        position: { x: 0, y: 2, z: 40 },
-        target: { x: 0, y: 1, z: 40 },
-        transition: "orbit", // mostrar tecnología
-      },
-
-      work: {
-        position: { x: 0, y: 2, z: 60 },
-        target: { x: 0, y: 1, z: 60 },
-        transition: "push", // foco en proyectos
-      },
-
-      collaboration: {
-        position: { x: 0, y: 2, z: 80 },
-        target: { x: 0, y: 1, z: 80 },
-        transition: "slide", // transición lateral humana
-      },
-
-      contact: {
-        position: { x: 0, y: 2, z: 100 },
-        target: { x: 0, y: 1, z: 100 },
-        transition: "rise", // cierre / call to action
-      },
-    },
-
-    target: { x: 0, y: 1, z: 0 },
-
-    // 🔹 Cambiar sección
-    goTo: (section, source = "ui") => {
-      const { current, isAnimating, sections } = get().camera;
-
-      if (isAnimating) return;
-      if (!sections.includes(section)) return;
-      if (section === current) return;
-
-      set((state) => ({
-        camera: {
-          ...state.camera,
-          current: section,
-          lastSource: source,
+        views: {
+          home: {
+            position: { x: 4, y: 2, z: 6 },
+            target: { x: 0, y: 1, z: 0 },
+            transition: "soft",
+            lockScroll: true,
+          },
+          mission: {
+            position: { x: 0, y: 2, z: 20 },
+            target: { x: 0, y: 1, z: 20 },
+            transition: "arc",
+          },
+          stack: {
+            position: { x: 0, y: 2, z: 40 },
+            target: { x: 0, y: 1, z: 40 },
+            transition: "orbit",
+          },
+          work: {
+            position: { x: 0, y: 2, z: 60 },
+            target: { x: 0, y: 1, z: 60 },
+            transition: "push",
+          },
+          collaboration: {
+            position: { x: 0, y: 2, z: 80 },
+            target: { x: 0, y: 1, z: 80 },
+            transition: "slide",
+          },
+          contact: {
+            position: { x: 0, y: 2, z: 100 },
+            target: { x: 0, y: 1, z: 100 },
+            transition: "rise",
+          },
         },
-      }));
-    },
-    setCurrentSection: (section) =>
-      set((state) => ({
-        camera: { ...state.camera, current: section },
-      })),
 
-    // 🔹 Avanzar a la siguiente sección
-    next: () => {
-      const { sections, current, goTo } = get().camera;
-      const index = sections.indexOf(current);
-      if (index < sections.length - 1) {
-        goTo(sections[index + 1], "scroll");
-      }
-    },
+        target: { x: 0, y: 1, z: 0 },
 
-    // 🔹 Volver a la sección anterior
-    prev: () => {
-      const { sections, current, goTo } = get().camera;
-      const index = sections.indexOf(current);
-      if (index > 0) {
-        goTo(sections[index - 1], "scroll");
-      }
-    },
+        goTo: (section, source = "ui") => {
+          const state = get();
+          const { current, isAnimating, sections } = state.camera;
+          const musicEnabled = get().musicEnabled;
 
-    // 🔹 Obtener posición actual de la cámara
-    getPosition: (section) => get().camera.positions[section],
-    isAnimating: false, // nuevo estado
-    setAnimating: (value) =>
-      set((state) => ({
-        camera: { ...state.camera, isAnimating: value },
-      })),
-  },
-}));
+          if (isAnimating) return;
+          if (!sections.includes(section)) return;
+          if (section === current) return;
+
+          console.log(
+            "🎬 Navigate to:",
+            section,
+            "| Music enabled:",
+            musicEnabled
+          );
+
+          // Cambiar música si está habilitada
+          if (musicEnabled) {
+            audioManager.play(section);
+          }
+
+          set((state) => ({
+            camera: {
+              ...state.camera,
+              current: section,
+              lastSource: source,
+            },
+          }));
+        },
+
+        setCurrentSection: (section) =>
+          set((state) => ({
+            camera: { ...state.camera, current: section },
+          })),
+
+        next: () => {
+          const { sections, current, goTo } = get().camera;
+          const index = sections.indexOf(current);
+          if (index < sections.length - 1) {
+            goTo(sections[index + 1], "scroll");
+          }
+        },
+
+        prev: () => {
+          const { sections, current, goTo } = get().camera;
+          const index = sections.indexOf(current);
+          if (index > 0) {
+            goTo(sections[index - 1], "scroll");
+          }
+        },
+
+        getPosition: (section) => get().camera.views[section],
+        isAnimating: false,
+        setAnimating: (value) =>
+          set((state) => ({
+            camera: { ...state.camera, isAnimating: value },
+          })),
+      },
+    }),
+    {
+      name: "app-store",
+      // Solo persistir el valor booleano, no las funciones
+      partialize: (state) => ({
+        musicEnabled: state.musicEnabled,
+      }),
+    }
+  )
+);
 
 export default useStore;

@@ -5,3 +5,4 @@ export * from "./hologram";
 export * from "./socials";
 export * from "./loader";
 export * from "./language";
+export * from "./music";

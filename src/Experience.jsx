@@ -1,6 +1,6 @@
 // import { Suspense } from "reimport { OrbitControls, Environment } from "@react-three/drei";
 import { Environment, OrbitControls } from "@react-three/drei";
-import { Home, Stack, Mision, Contact, Collaboration, Work } from "./sections";
+import { Home, Stack, Mission, Contact, Collaboration, Work } from "./sections";
 import { useResponsiveValues } from "./utils/responsiveValues";
 import useStore from "./store/useStore";
 
@@ -26,7 +26,7 @@ export default function Experience({ ready }) {
 
       <group>
         {section === "home" && <Home ready={ready} />}
-        {section === "mision" && <Mision ready={ready} />}
+        {section === "mission" && <Mission ready={ready} />}
         {section === "stack" && <Stack ready={ready} />}
         {section === "work" && <Work ready={ready} />}
         {section === "collaboration" && <Collaboration ready={ready} />}
