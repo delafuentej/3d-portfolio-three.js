@@ -1,10 +1,10 @@
-import { useI18nStore } from "../../store/useI18nStore";
-import useStore from "../../store/useStore";
-import { LANGUAGES } from "../../constants";
+import { useI18nStore } from "../../../store/useI18nStore";
+import useStore from "../../../store/useStore";
+import { LANGUAGES } from "../../../constants";
 import LanguageTrigger from "./LanguageTrigger";
 import LanguageDropdown from "./LanguageDropdown";
-import { useAudioUnlock } from "../../hooks/useAudioUnlock";
-import { playSound } from "../../audio/audioEngine";
+import { useAudioUnlock } from "../../../hooks/useAudioUnlock";
+import { playSound } from "../../../audio/audioEngine";
 
 const LanguageSelect = () => {
   const lang = useI18nStore((s) => s.lang);

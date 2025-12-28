@@ -5,11 +5,10 @@ import LoadingScreen from "./components/loader/LoadingScreen";
 import ToggleButton from "./components/nav/ToggleButton";
 import OverlayNav from "./components/nav/OverlayNav";
 import CursorTrail from "./components/cursor-trail/CursorTrail";
-import LanguageSelect from "./components/language/LanguageSelect";
+
 import useStore from "./store/useStore";
 import CameraCinematicDirector from "./components/CameraCinematicDirector";
-import { MusicToggleBtn } from "./components";
-
+import { SettingsPanel } from "./components";
 import useCameraRouter from "./hooks/useCameraRouter";
 import useAutoCloseMenu from "./hooks/useAutoCloseMenu";
 import useBlockScrollDuringTransition from "./hooks/useBlockScrollDuringTransition";
@@ -98,8 +97,7 @@ function App() {
 
       {!isLoading && (
         <div className="absolute top-4 right-4 flex gap-2 z-50">
-          <LanguageSelect />
-          <MusicToggleBtn />
+          <SettingsPanel />
         </div>
       )}
 
