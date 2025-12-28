@@ -10,6 +10,8 @@ import { menuItems as baseMenuItems } from "../../constants";
 import useStore from "../../store/useStore";
 import { useI18nStore } from "../../store/useI18nStore";
 import { useResponsiveConfig } from "../../hooks/useResponsiveConfig";
+import { useAudioUnlock } from "../../hooks/useAudioUnlock";
+import { playSound } from "../../audio/audioEngine";
 
 const Icons = {
   ...IoIcons,
@@ -74,7 +76,7 @@ const CircularMenu = () => {
   };
 
   // 🔹 Selección real: click o joystick release
-  const handleSegmentSelect = (selectIndex, source = "menu") => {
+  const handleSegmentSelect = async (selectIndex, source = "menu") => {
     if (selectIndex === null) return;
 
     // Guardar segmento activo
@@ -83,6 +85,10 @@ const CircularMenu = () => {
     const section = menuItems[selectIndex]?.section;
     if (!section) return;
 
+    const { unlock } = useAudioUnlock();
+
+    await unlock();
+    playSound("close");
     // Animación cinematográfica
     gsap.delayedCall(0.5, () => {
       useStore.getState().camera.goTo(section, source);

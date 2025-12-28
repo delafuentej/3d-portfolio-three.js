@@ -11,6 +11,7 @@ import {
 } from "react-icons/io5";
 import { playSound } from "../../audio/audioEngine";
 import { useResponsiveConfig } from "../../hooks/useResponsiveConfig";
+import { useAudioUnlock } from "../../hooks/useAudioUnlock";
 
 export const Joystick = forwardRef(
   ({ onSegmentMove, onSegmentRelease, menuItems, isOpen }, ref) => {
@@ -93,12 +94,15 @@ export const Joystick = forwardRef(
             }
           };
 
-          const endDrag = () => {
+          const endDrag = async () => {
             isDragging.current = false;
             current.current.targetX = 0;
             current.current.targetY = 0;
             // 🔹 Ejecuta la acción real al soltar
             if (activeSegmentRef.current !== null) {
+              const { unlock } = useAudioUnlock();
+              await unlock();
+              playSound("close"); // sonido al cerrar/seleccionar
               onSegmentRelease?.(activeSegmentRef.current);
             }
             document.removeEventListener("mousemove", drag);
