@@ -12,16 +12,17 @@ import {
   CustomText,
   GitHubLogo,
   LinkedinLogo,
-  MacBook,
+  // MacBook,
+  MacBook2,
   Mailbox,
 } from "../components";
 
 export default function Home({ ready }) {
   const { hologram, light, titleText } = useResponsiveValues();
 
-  const macbookModel = useGLTF(
-    "https://threejs-journey.com/resources/models/macbook_model.gltf",
-  );
+  // const macbookModel = useGLTF(
+  // "https://threejs-journey.com/resources/models/macbook_model.gltf",
+  // );
   const gitHubModel = useGLTF("/models/github.glb");
 
   const bangersFont = "./fonts/bangers-v20-latin-regular.woff";
@@ -57,8 +58,8 @@ export default function Home({ ready }) {
               rotation={[0.1, Math.PI, 0]}
               position={[0, 0.55, -1.03]}
             />
-
-            <MacBook model={macbookModel} ready={ready} />
+            <MacBook2 />
+            {/* <MacBook model={macbookModel} ready={ready} /> */}
             <GitHubLogo model={gitHubModel} />
             <LinkedinLogo />
             <Mailbox />
