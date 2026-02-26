@@ -20,7 +20,7 @@ export default function Home({ ready }) {
   const { hologram, light, titleText } = useResponsiveValues();
 
   const macbookModel = useGLTF(
-    "https://threejs-journey.com/resources/models/macbook_model.gltf"
+    "https://threejs-journey.com/resources/models/macbook_model.gltf",
   );
   const gitHubModel = useGLTF("/models/github.glb");
 

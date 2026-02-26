@@ -23,10 +23,14 @@ export default function CameraCinematicDirector() {
   const views = useStore((state) => state.camera.views);
   const setAnimating = useStore((state) => state.camera.setAnimating);
 
+  const shouldAnimate = currentSection !== "work";
+
   const targetRef = useRef(new THREE.Vector3(0, 1, 0));
   const timeline = useRef(null);
 
   useEffect(() => {
+    if (!shouldAnimate) return;
+
     const view = views[currentSection];
     if (!view) return;
 
@@ -64,7 +68,7 @@ export default function CameraCinematicDirector() {
     timeline.current.eventCallback("onUpdate", () => {
       camera.lookAt(targetRef.current);
     });
-  }, [currentSection]);
+  }, [currentSection, shouldAnimate]);
 
   return null;
 }

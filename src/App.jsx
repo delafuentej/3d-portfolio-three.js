@@ -1,11 +1,12 @@
 import { Suspense, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
+import { EffectComposer, Noise, Bloom } from "@react-three/postprocessing";
 import Experience from "./Experience";
 import LoadingScreen from "./components/loader/LoadingScreen";
 import ToggleButton from "./components/nav/ToggleButton";
 import OverlayNav from "./components/nav/OverlayNav";
 import CursorTrail from "./components/cursor-trail/CursorTrail";
-
+//https://pmndrs.github.io/postprocessing/public/docs/class/src/effects/GlitchEffect.js~GlitchEffect.html
 import useStore from "./store/useStore";
 import CameraCinematicDirector from "./components/CameraCinematicDirector";
 import { SettingsPanel } from "./components";
@@ -17,6 +18,7 @@ import { useI18nStore } from "./store/useI18nStore";
 import { audioManager } from "./audio/AudioManager";
 
 function App() {
+  const section = useStore((state) => state.camera.current);
   // 🔹 Leer idioma desde la URL solo al cargar
   useEffect(() => {
     const hash = window.location.hash;
@@ -114,6 +116,16 @@ function App() {
         <Suspense fallback={null}>
           <CameraCinematicDirector />
           <Experience />
+          {/* {isLoading && section !== "home" && ( 
+            <EffectComposer>
+              <Bloom
+                luminanceThreshold={0}
+                luminanceSmoothing={0.9}
+                height={300}
+              />
+              <Noise opacity={0.2} />
+            </EffectComposer>
+          )}*/}
         </Suspense>
       </Canvas>
 

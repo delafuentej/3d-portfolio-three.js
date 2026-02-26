@@ -1,12 +1,16 @@
 // import { Suspense } from "reimport { OrbitControls, Environment } from "@react-three/drei";
 import { Environment, OrbitControls } from "@react-three/drei";
 import { Home, Stack, Mission, Contact, Collaboration, Work } from "./sections";
+import { EffectComposer, Noise } from "@react-three/postprocessing";
+
 import { useResponsiveValues } from "./utils/responsiveValues";
 import useStore from "./store/useStore";
 
 export default function Experience({ ready }) {
   const section = useStore((state) => state.camera.current);
+  console.log("section", section);
   const { controls } = useResponsiveValues();
+
   return (
     <>
       <color args={["#2C2F33"]} attach="background" />

@@ -131,7 +131,31 @@ const useStore = create(
             menu: { ...state.menu, isOpen: false },
           })),
       },
+      /* =====================
+   SCROLL
+===================== */
+      scroll: {
+        hasScrolled: false,
 
+        setHasScrolled: (value) =>
+          set((state) => ({
+            scroll: { ...state.scroll, hasScrolled: value },
+          })),
+
+        setScrollDirection: (dir) =>
+          set((state) => ({
+            scroll: { ...state.scroll, scrollDirection: dir },
+          })),
+
+        reset: () =>
+          set((state) => ({
+            scroll: {
+              ...state.scroll,
+              hasScrolled: false,
+              scrollDirection: "down",
+            },
+          })),
+      },
       /* =====================
      CAMERA
   ===================== */

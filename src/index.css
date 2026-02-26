@@ -336,9 +336,7 @@ body,
   /* joystick */
   .joystick {
     @apply absolute
-   
-      lg:left-1/2
-    
+      lg:left-1/2    
       md:-translate-x-1/2
       -translate-x-1/2
       -translate-y-1/2
@@ -402,6 +400,44 @@ body,
 
   .label {
     @apply normal-case  text-[15px] font-medium;
+  }
+
+  /* =========================
+   Scroll Wheel
+========================== */
+  .scroll-down {
+    @apply w-[28px] h-[42px] border-2 border-white rounded-[12px] flex justify-center mb-16 pointer-events-none;
+  }
+
+  .scroll-down-wheel {
+    @apply bg-white w-[3px] h-[10px] rounded-[2px] mt-1;
+  }
+
+  /* =========================
+   SECTIONS
+========================== */
+
+  /* WORK */
+  /* index.css */
+
+  .work {
+    @apply relative h-screen overflow-hidden;
+  }
+
+  .canvas {
+    @apply absolute inset-0 z-0;
+  }
+
+  .content {
+    @apply relative z-10 max-w-[480px] p-24 text-white;
+  }
+
+  .content h2 {
+    @apply text-6xl mb-4;
+  }
+
+  .content ul {
+    @apply mt-8 leading-[1.8];
   }
 }
 
