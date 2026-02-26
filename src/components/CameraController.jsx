@@ -11,7 +11,7 @@ export default function CameraController() {
   // posición objetivo según vista
   let target = cameraPositions[currentView];
 
-  console.log("target", target);
+  // console.log("target", target);
 
   // si estamos en "projects" y expandido, acercamos la cámara
   if (currentView === "projects" && isExpanded) {

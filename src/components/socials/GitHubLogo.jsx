@@ -5,7 +5,7 @@ import useHoverGlow from "../../hooks/useHoverGlow";
 
 import { config } from "../../config";
 function GitHubLogo(props) {
-  console.log("config", config);
+  // console.log("config", config);
   const { nodes, materials } = useGLTF("/models/github.glb");
 
   const { setHovered } = useHoverGlow(materials, "#7FFF00", 10);

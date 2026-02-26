@@ -13,6 +13,7 @@ import {
   CustomText,
   GitHubLogo,
   MacBook,
+  MacBook2,
   Hologram,
   LinkedinLogo,
   Mailbox,
@@ -22,9 +23,9 @@ export default function Experience({ ready }) {
   const { controls, hologram, light, titleText } = useResponsiveValues();
 
   //models
-  const macbookModel = useGLTF(
-    "https://threejs-journey.com/resources/models/macbook_model.gltf"
-  );
+  // const macbookModel = useGLTF(
+  // "https://threejs-journey.com/resources/models/macbook_model.gltf",
+  // );
 
   const gitHubModel = useGLTF("/models/github.glb");
   //fonts
@@ -84,7 +85,9 @@ export default function Experience({ ready }) {
 
           {/* <CameraController /> */}
 
-          <MacBook model={macbookModel} ready={ready} />
+          {/* <MacBook model={macbookModel} ready={ready} /> */}
+
+          <MacBook2 />
 
           <GitHubLogo model={gitHubModel} />
 
