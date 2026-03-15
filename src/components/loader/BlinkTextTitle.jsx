@@ -26,8 +26,8 @@ const BlinkTextTitle = ({
       type === "chars"
         ? split.chars
         : type === "words"
-        ? split.words
-        : split.lines;
+          ? split.words
+          : split.lines;
 
     // Inicializamos la opacidad
     gsap.set(targets, { opacity: 0 });

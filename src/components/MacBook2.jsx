@@ -8,12 +8,15 @@ Title: macbook pro M3 16 inch 2024
 
 import { useGLTF, Html } from "@react-three/drei";
 import { useResponsiveValues } from "../utils/responsiveValues";
+import useHoverGlow from "../hooks/useHoverGlow";
 
 export function MacBook2(props) {
   const { nodes, materials } = useGLTF("/models/macbook_pro.glb");
   //   console.log("materials", materials.sfCQkHOWyrsLmor);
   //   console.log("geometry", nodes.Object_123.geometry);
   const { macbook } = useResponsiveValues();
+
+  // const { setHovered } = useHoverGlow(materials, "#ffffff10", 10);
   return (
     <group {...props} dispose={null} scale={0.1} position={[0, -1.5, 0]}>
       <group rotation={[Math.PI / 2, 0, 0]}>
@@ -374,6 +377,8 @@ export function MacBook2(props) {
             <iframe
               src="https://3d-projects-beta.vercel.app/"
               className="screen-iframe"
+              // onPointerEnter={() => setHovered(true)}
+              // onPointerLeave={() => setHovered(false)}
             />
           </Html>
         </mesh>

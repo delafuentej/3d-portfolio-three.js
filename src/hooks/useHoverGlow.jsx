@@ -7,7 +7,7 @@ const useHoverGlow = (
   materials,
   colorHex = "#7FFF00",
   maxIntensity = 5,
-  lerpFactor = 0.1
+  lerpFactor = 0.1,
 ) => {
   const [hovered, setHovered] = useState(false);
   useCursor(hovered);
@@ -26,7 +26,7 @@ const useHoverGlow = (
       material.emissiveIntensity = MathUtils.lerp(
         material.emissiveIntensity,
         hovered ? maxIntensity : 0,
-        lerpFactor
+        lerpFactor,
       );
     });
   });

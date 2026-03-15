@@ -10,6 +10,9 @@ const useStore = create((set) => ({
       })),
   },
 
+  /* =====================
+      LOADING
+      ===================== */
   loading: {
     visible: true,
     finished: false,
@@ -40,6 +43,10 @@ const useStore = create((set) => ({
         },
       })),
   },
+
+  /* =====================
+     VIEW
+  ===================== */
 
   view: {
     current: "home",

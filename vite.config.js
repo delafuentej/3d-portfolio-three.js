@@ -44,6 +44,7 @@ export default {
         manualChunks: {
           react: ["react"],
           three: ["three"],
+          r3f: ["@react-three/fiber", "@react-three/drei"],
         },
       },
     },

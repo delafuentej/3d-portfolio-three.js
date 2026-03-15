@@ -1,12 +1,17 @@
+import useStore from "./store/useStore";
+
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import Experience from "./Experience";
-import { LoadingScreen } from "./components";
+import { LoadingScreen, CursorTrail } from "./components";
 
 function App() {
+  const loadingFinished = useStore((state) => state.loading.finished);
+  const isLoading = !loadingFinished;
   return (
     <>
-      <LoadingScreen />
+      {isLoading && <LoadingScreen />}
+      {isLoading && <CursorTrail />}
       <Canvas
         dpr={[1, 2]}
         gl={{ antialias: true }}
