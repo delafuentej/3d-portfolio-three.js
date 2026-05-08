@@ -5,7 +5,7 @@ export const config = {
     socials: [
       {
         name: "LinkedIn",
-        url: "https://www.linkedin.com/in/jesus-de-la-fuente-b5325047/",
+        url: "https://www.linkedin.com/in/jesusdelafuente-dev/",
       },
       { name: "GitHub", url: "https://github.com/delafuentej" },
     ],
