@@ -31,6 +31,8 @@ export default function Experience({ ready }) {
   //fonts
   const bangersFont = "./fonts/bangers-v20-latin-regular.woff";
   const cabinSketchFont = "./fonts/CabinSketch-Bold.woff";
+  // hdri
+  const studioHDRI = "./images/hdri/studio.hdr";
 
   useEffect(() => {
     if (!ready) return;
@@ -57,7 +59,7 @@ export default function Experience({ ready }) {
         maxPolarAngle={Math.PI / 2} // ← Impide rotar en X
       />
 
-      <Environment preset="studio" />
+      <Environment files={studioHDRI} />
 
       <PresentationControls
         global
